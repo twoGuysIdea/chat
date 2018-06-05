@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/chat.iml" filepath="$PROJECT_DIR$/chat.iml" />
+      <module fileurl="file://$PROJECT_DIR$/chat-common/chat-common.iml" filepath="$PROJECT_DIR$/chat-common/chat-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/chat-controller/chat-controller.iml" filepath="$PROJECT_DIR$/chat-controller/chat-controller.iml" />
+      <module fileurl="file://$PROJECT_DIR$/chat-dao/chat-dao.iml" filepath="$PROJECT_DIR$/chat-dao/chat-dao.iml" />
+      <module fileurl="file://$PROJECT_DIR$/chat-service/chat-service.iml" filepath="$PROJECT_DIR$/chat-service/chat-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/chat-web-service/chat-web-service.iml" filepath="$PROJECT_DIR$/chat-web-service/chat-web-service.iml" />
+    </modules>
+  </component>
+</project>
