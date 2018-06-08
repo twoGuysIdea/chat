@@ -1,4 +1,5 @@
 package com.weige.ssm.domain;
+
 /**
  * <pre>
  * 功       能:用于分析返回结果 http
@@ -13,28 +14,23 @@ public class Result<T> {
 	 * 状态码
 	 */
 	private Integer code;
-	
+
 	/**
 	 * 返回消息
 	 */
 	private String message;
-	
+
 	/**
 	 * 具体内容
 	 */
 	private T data;
-	
+
 	public Result() {
-		
+
 	}
 
 	public Integer getCode() {
 		return code;
-	}
-
-	public Result<T> setCode(Integer code) {
-		this.code = code;
-		return this;
 	}
 
 	public String getMessage() {
@@ -54,7 +50,7 @@ public class Result<T> {
 		this.data = data;
 		return this;
 	}
-	
+
 	public Result<T> setCode(ResultStatus resultStatus) {
 		this.code = resultStatus.getCode();
 		this.message = resultStatus.getMessage();
@@ -65,6 +61,5 @@ public class Result<T> {
 	public String toString() {
 		return "Result [code=" + code + ", message=" + message + ", data=" + data + "]";
 	}
-	
-	
+
 }

@@ -14,7 +14,7 @@ spring:
   #配置阿里巴巴连接池
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/spring-boot?characterEncoding=utf8
+    url: jdbc:mysql://127.0.0.1:3306/chat?characterEncoding=utf8
     username: yangyiwei
     password: 123456
     type: com.alibaba.druid.pool.DruidDataSource
@@ -38,7 +38,7 @@ spring:
   #配置redis
   redis:
     database: 0
-    host: 192.168.9.128
+    host: 172.16.31.240
     port: 6379
     timeout: 0
     password: 123456
