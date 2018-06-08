@@ -26,10 +26,10 @@ public class HelloSpringBootTask {
 	 * Q    Q: 2873824885
 	 * </pre>
 	 */
-	@Scheduled(fixedRate = 5000)
-	@Scheduled(cron = "0 */1 * * * ?")
-	public void saySpringBoot() {
+	//@Scheduled(fixedRate = 5000)
+	//@Scheduled(cron = "0 */1 * * * ?")
+	/*public void saySpringBoot() {
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); 
 		System.out.println("当前时间：" + df.format(new Date()) + ": hello spring boot");
-	}
+	}*/
 }
