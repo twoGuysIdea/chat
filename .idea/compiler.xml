@@ -13,13 +13,5 @@
         <module name="chat-web-service" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="chat" target="1.8" />
-      <module name="chat-common" target="1.8" />
-      <module name="chat-controller" target="1.8" />
-      <module name="chat-dao" target="1.8" />
-      <module name="chat-service" target="1.8" />
-      <module name="chat-web-service" target="1.8" />
-    </bytecodeTargetLevel>
   </component>
 </project>
