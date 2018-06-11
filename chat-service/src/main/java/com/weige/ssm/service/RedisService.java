@@ -7,7 +7,7 @@ import com.weige.ssm.domain.Result;
  * redis操作
  * @author yangyiwei
  * @date 2018年6月7日
- * @time 上午9:33:02
+ * @time 上午9:33:02 随便调教一下
  */
 public interface RedisService {
 
