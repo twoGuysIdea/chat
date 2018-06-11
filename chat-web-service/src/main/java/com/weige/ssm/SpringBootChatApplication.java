@@ -7,7 +7,7 @@ import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import tk.mybatis.spring.annotation.MapperScan;
 
-@SpringBootApplication // spring-boot 启动类
+@SpringBootApplication // spring-boot 启动类 好 我提交一下
 @MapperScan("com.weige.ssm.dao") // 配置mybatis-dao层扫描
 @ComponentScan(basePackages = { "com.weige.ssm" }) // 基本扫包配置
 @EnableScheduling // 定时任务配置开启
