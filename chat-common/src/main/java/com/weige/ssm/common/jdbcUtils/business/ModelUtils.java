@@ -1,8 +1,8 @@
 package com.weige.ssm.common.jdbcUtils.business;
 
-import car.erp.utils.jdbcUtils.annotation.ClassPro;
-import car.erp.utils.jdbcUtils.annotation.FieldPro;
-import car.erp.utils.jdbcUtils.connect.JDBCConnectionUtils;
+import com.weige.ssm.common.jdbcUtils.annotation.ClassPro;
+import com.weige.ssm.common.jdbcUtils.annotation.FieldPro;
+import com.weige.ssm.common.jdbcUtils.connect.JDBCConnectionUtils;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
