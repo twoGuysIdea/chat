@@ -81,10 +81,11 @@
 		</dependency>
 
 		<!-- alibaba JSON:对空值处理 -->
+		<!-- https://mvnrepository.com/artifact/com.alibaba/fastjson -->
 		<dependency>
 			<groupId>com.alibaba</groupId>
-			<artifactId>fastjson-ihygeia</artifactId>
-			<version>1.2.7</version>
+			<artifactId>fastjson</artifactId>
+			<version>1.2.47</version>
 		</dependency>
 
 
