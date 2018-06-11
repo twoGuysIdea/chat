@@ -1,4 +1,4 @@
-jedis.pool.host:192.168.9.128
+jedis.pool.host:172.16.31.240
 jedis.pool.port:6379
 jedis.pool.password:123456
 jedis.pool.timeout:60000
