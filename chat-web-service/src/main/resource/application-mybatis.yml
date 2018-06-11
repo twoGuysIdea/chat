@@ -3,11 +3,11 @@ server:
   port: 8091
   
 mybatis:
-  type-aliases-package: com.weige.ssm.domain
+  type-aliases-package: com.chat.springboot.domain
   mapper-locations: classpath:/com/weige/ssm/mapper/*.xml
   
 mapper:
-  mappers: com.weige.ssm.mapper
+  mappers: com.chat.springboot.mapper
   not-empty: false
   identity: MYSQL
   

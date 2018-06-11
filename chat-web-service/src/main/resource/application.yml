@@ -62,4 +62,4 @@ spring:
 logging:
   path: /com/yangyiwei
   level:
-    com.weige.ssm: debug     
+    com.chat.springboot: debug

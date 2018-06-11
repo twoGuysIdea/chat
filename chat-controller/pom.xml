@@ -4,11 +4,11 @@
 	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>com.weige.ssm</groupId>
+		<groupId>com.chat.springboot</groupId>
 		<artifactId>chat</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	<groupId>com.weige.ssm</groupId>
+	<groupId>com.chat.springboot</groupId>
 	<artifactId>chat-controller</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>chat-controller</name>
@@ -25,7 +25,7 @@
 		</dependency>
 		<!-- 配置对chat-service的依赖 -->
 		<dependency>
-			<groupId>com.weige.ssm</groupId>
+			<groupId>com.chat.springboot</groupId>
 			<artifactId>chat-service</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
