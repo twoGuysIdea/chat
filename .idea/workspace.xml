@@ -1,164 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="906c0511-c00e-4cf0-9a2b-6d19a6901972" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/chat-common/src/main/java/com/chat/springboot/common/AsyncTask.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/chat-common/src/main/java/com/chat/springboot/common/CheckValue.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/chat-common/src/main/java/com/chat/springboot/common/GeneratorDisplay.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/chat-common/src/main/java/com/chat/springboot/common/HelloSpringBootTask.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/chat-common/src/main/java/com/chat/springboot/common/HttpRequestUtil.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/chat-common/src/main/java/com/chat/springboot/common/MyMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/chat-common/src/main/java/com/chat/springboot/common/PageInterceptor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/chat-common/src/main/java/com/chat/springboot/common/ValidateBean.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/chat-common/src/main/java/com/chat/springboot/common/ValidatePage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/chat-common/src/main/java/com/chat/springboot/common/jdbcUtils/annotation/ClassPro.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/chat-common/src/main/java/com/chat/springboot/common/jdbcUtils/annotation/FieldPro.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/chat-common/src/main/java/com/chat/springboot/common/jdbcUtils/business/ModelUtils.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/chat-common/src/main/java/com/chat/springboot/common/jdbcUtils/connect/JDBCConnectionUtils.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/chat-controller/src/main/java/com/chat/springboot/controller/AsyncController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/chat-controller/src/main/java/com/chat/springboot/controller/FreeMarkerController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/chat-controller/src/main/java/com/chat/springboot/controller/MongodbController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/chat-controller/src/main/java/com/chat/springboot/controller/RedisController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/chat-controller/src/main/java/com/chat/springboot/controller/RestRequestController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/chat-controller/src/main/java/com/chat/springboot/controller/ThymeleafController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/chat-controller/src/main/java/com/chat/springboot/controller/UserController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/chat-dao/src/main/java/com/chat/springboot/dao/PersonDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/chat-dao/src/main/java/com/chat/springboot/dao/UserMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/chat-dao/src/main/java/com/chat/springboot/domain/Girl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/chat-dao/src/main/java/com/chat/springboot/domain/Person.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/chat-dao/src/main/java/com/chat/springboot/domain/ProjectException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/chat-dao/src/main/java/com/chat/springboot/domain/Result.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/chat-dao/src/main/java/com/chat/springboot/domain/ResultStatus.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/chat-dao/src/main/java/com/chat/springboot/domain/User.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/chat-dao/src/main/java/com/chat/springboot/mapper/UserMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/chat-service/src/main/java/com/chat/springboot/service/PersonService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/chat-service/src/main/java/com/chat/springboot/service/RedisService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/chat-service/src/main/java/com/chat/springboot/service/UserService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/chat-service/src/main/java/com/chat/springboot/service/impl/PersonServiceBean.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/chat-service/src/main/java/com/chat/springboot/service/impl/RedisServiceBean.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/chat-service/src/main/java/com/chat/springboot/service/impl/UserServiceBean.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/chat-web-service/src/main/java/com/chat/springboot/SpringBootChatApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/chat-web-service/src/main/java/com/chat/springboot/aop/ExceptionHandleAop.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/chat-web-service/src/main/java/com/chat/springboot/aop/LogAspj.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/chat-web-service/src/main/java/com/chat/springboot/config/RedisConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/chat-web-service/src/main/java/com/chat/springboot/config/RestTemplateConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/chat-web-service/src/main/java/com/chat/springboot/config/SwaggerConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/chat-web-service/src/main/java/com/chat/springboot/config/WebMvcInterceptor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/chat-web-service/src/main/java/com/chat/springboot/filter/MyCORSFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/chat-web-service/src/main/java/com/chat/springboot/filter/SSOClientFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/chat-web-service/src/test/java/com/chat/springboot/SpringBootChatApplicationTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+    <list default="true" id="af2c0bc7-a9f1-403f-a3b3-1e525d609ba8" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/chat-controller/src/main/java/com/chat/springboot/controller/CheckCenterController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chat-service/src/main/java/com/chat/springboot/service/websocket/WebSocketConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chat-service/src/main/java/com/chat/springboot/service/websocket/WebSocketServer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat-common/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/chat-common/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat-common/src/main/java/com/weige/ssm/common/AsyncTask.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat-common/src/main/java/com/weige/ssm/common/CheckValue.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat-common/src/main/java/com/weige/ssm/common/GeneratorDisplay.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat-common/src/main/java/com/weige/ssm/common/HelloSpringBootTask.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat-common/src/main/java/com/weige/ssm/common/HttpRequestUtil.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat-common/src/main/java/com/weige/ssm/common/MyMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat-common/src/main/java/com/weige/ssm/common/PageInterceptor.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat-common/src/main/java/com/weige/ssm/common/ValidateBean.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat-common/src/main/java/com/weige/ssm/common/ValidatePage.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat-common/src/main/java/com/weige/ssm/common/jdbcUtils/annotation/ClassPro.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat-common/src/main/java/com/weige/ssm/common/jdbcUtils/annotation/FieldPro.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat-common/src/main/java/com/weige/ssm/common/jdbcUtils/business/ModelUtils.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat-common/src/main/java/com/weige/ssm/common/jdbcUtils/connect/JDBCConnectionUtils.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat-common/target/classes/com/weige/ssm/common/AsyncTask.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat-common/target/classes/com/weige/ssm/common/CheckValue.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat-common/target/classes/com/weige/ssm/common/GeneratorDisplay.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat-common/target/classes/com/weige/ssm/common/HelloSpringBootTask.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat-common/target/classes/com/weige/ssm/common/HttpRequestUtil.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat-common/target/classes/com/weige/ssm/common/MyMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat-common/target/classes/com/weige/ssm/common/PageInterceptor.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat-common/target/classes/com/weige/ssm/common/ValidateBean.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat-common/target/classes/com/weige/ssm/common/ValidatePage.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat-controller/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/chat-controller/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat-controller/src/main/java/com/weige/ssm/controller/AsyncController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat-controller/src/main/java/com/weige/ssm/controller/FreeMarkerController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat-controller/src/main/java/com/weige/ssm/controller/MongodbController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat-controller/src/main/java/com/weige/ssm/controller/RedisController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat-controller/src/main/java/com/weige/ssm/controller/RestRequestController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat-controller/src/main/java/com/weige/ssm/controller/ThymeleafController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat-controller/src/main/java/com/weige/ssm/controller/UserController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat-controller/target/classes/com/weige/ssm/controller/AsyncController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat-controller/target/classes/com/weige/ssm/controller/FreeMarkerController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat-controller/target/classes/com/weige/ssm/controller/MongodbController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat-controller/target/classes/com/weige/ssm/controller/RedisController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat-controller/target/classes/com/weige/ssm/controller/RestRequestController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat-controller/target/classes/com/weige/ssm/controller/ThymeleafController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat-controller/target/classes/com/weige/ssm/controller/UserController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat-dao/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/chat-dao/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat-dao/src/main/java/com/weige/ssm/dao/PersonDao.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat-dao/src/main/java/com/weige/ssm/dao/UserMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat-dao/src/main/java/com/weige/ssm/domain/Girl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat-dao/src/main/java/com/weige/ssm/domain/Person.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat-dao/src/main/java/com/weige/ssm/domain/ProjectException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat-dao/src/main/java/com/weige/ssm/domain/Result.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat-dao/src/main/java/com/weige/ssm/domain/ResultStatus.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat-dao/src/main/java/com/weige/ssm/domain/User.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat-dao/src/main/java/com/weige/ssm/mapper/UserMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat-dao/target/classes/com/weige/ssm/dao/PersonDao.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat-dao/target/classes/com/weige/ssm/dao/UserMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat-dao/target/classes/com/weige/ssm/domain/Girl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat-dao/target/classes/com/weige/ssm/domain/Person.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat-dao/target/classes/com/weige/ssm/domain/ProjectException.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat-dao/target/classes/com/weige/ssm/domain/Result.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat-dao/target/classes/com/weige/ssm/domain/ResultStatus.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat-dao/target/classes/com/weige/ssm/domain/User.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat-dao/target/classes/com/weige/ssm/mapper/UserMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/chat-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat-service/src/main/java/com/weige/ssm/service/PersonService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat-service/src/main/java/com/weige/ssm/service/RedisService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat-service/src/main/java/com/weige/ssm/service/UserService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat-service/src/main/java/com/weige/ssm/service/impl/PersonServiceBean.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat-service/src/main/java/com/weige/ssm/service/impl/RedisServiceBean.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat-service/src/main/java/com/weige/ssm/service/impl/UserServiceBean.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat-service/target/classes/com/weige/ssm/service/PersonService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat-service/target/classes/com/weige/ssm/service/RedisService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat-service/target/classes/com/weige/ssm/service/UserService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat-service/target/classes/com/weige/ssm/service/impl/PersonServiceBean.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat-service/target/classes/com/weige/ssm/service/impl/RedisServiceBean.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat-service/target/classes/com/weige/ssm/service/impl/UserServiceBean.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat-web-service/.springBeans" beforeDir="false" afterPath="$PROJECT_DIR$/chat-web-service/.springBeans" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat-web-service/generatorConfig.xml" beforeDir="false" afterPath="$PROJECT_DIR$/chat-web-service/generatorConfig.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat-web-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/chat-web-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat-web-service/src/main/java/com/weige/ssm/SpringBootChatApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat-web-service/src/main/java/com/weige/ssm/aop/ExceptionHandleAop.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat-web-service/src/main/java/com/weige/ssm/aop/LogAspj.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat-web-service/src/main/java/com/weige/ssm/config/RedisConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat-web-service/src/main/java/com/weige/ssm/config/RestTemplateConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat-web-service/src/main/java/com/weige/ssm/config/SwaggerConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat-web-service/src/main/java/com/weige/ssm/config/WebMvcInterceptor.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat-web-service/src/main/java/com/weige/ssm/filter/MyCORSFilter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat-web-service/src/main/java/com/weige/ssm/filter/SSOClientFilter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat-web-service/src/main/resource/application-mybatis.yml" beforeDir="false" afterPath="$PROJECT_DIR$/chat-web-service/src/main/resource/application-mybatis.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat-web-service/src/main/resource/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/chat-web-service/src/main/resource/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat-web-service/src/test/java/com/weige/ssm/SpringBootChatApplicationTests.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat-web-service/target/classes/application-mybatis.yml" beforeDir="false" afterPath="$PROJECT_DIR$/chat-web-service/target/classes/application-mybatis.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat-web-service/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/chat-web-service/target/classes/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat-web-service/target/classes/com/weige/ssm/SpringBootChatApplication.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat-web-service/target/classes/com/weige/ssm/aop/ExceptionHandleAop.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat-web-service/target/classes/com/weige/ssm/aop/LogAspj.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat-web-service/target/classes/com/weige/ssm/config/RedisConfig$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat-web-service/target/classes/com/weige/ssm/config/RedisConfig.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat-web-service/target/classes/com/weige/ssm/config/RestTemplateConfig.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat-web-service/target/classes/com/weige/ssm/config/SwaggerConfig.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat-web-service/target/classes/com/weige/ssm/config/WebMvcInterceptor.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat-web-service/target/classes/com/weige/ssm/filter/MyCORSFilter.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat-web-service/target/classes/com/weige/ssm/filter/SSOClientFilter.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat-web-service/target/classes/redis.property" beforeDir="false" afterPath="$PROJECT_DIR$/chat-web-service/target/classes/redis.property" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat-web-service/target/test-classes/com/weige/ssm/SpringBootChatApplicationTests.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
-    <ignored path="$PROJECT_DIR$/chat-controller/target/" />
-    <ignored path="$PROJECT_DIR$/chat-common/target/" />
-    <ignored path="$PROJECT_DIR$/chat-dao/target/" />
-    <ignored path="$PROJECT_DIR$/chat-service/target/" />
-    <ignored path="$PROJECT_DIR$/chat-web-service/target/" />
     <ignored path="$PROJECT_DIR$/target/" />
+    <ignored path="$PROJECT_DIR$/chat-dao/target/" />
+    <ignored path="$PROJECT_DIR$/chat-web-service/target/" />
+    <ignored path="$PROJECT_DIR$/chat-common/target/" />
+    <ignored path="$PROJECT_DIR$/chat-controller/target/" />
+    <ignored path="$PROJECT_DIR$/chat-service/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -168,19 +23,86 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="SpringBootChatApplication.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="SpringBootChatApplication.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/chat-web-service/src/main/java/com/chat/springboot/SpringBootChatApplication.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="66">
-              <caret line="17" column="40" lean-forward="true" selection-start-line="17" selection-start-column="40" selection-end-line="17" selection-end-column="40" />
+            <state relative-caret-position="209">
+              <caret line="17" column="40" selection-start-line="17" selection-start-column="40" selection-end-line="17" selection-end-column="40" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="WebSocketConfig.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/chat-service/src/main/java/com/chat/springboot/service/websocket/WebSocketConfig.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="133">
+              <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="WebSocketServer.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/chat-service/src/main/java/com/chat/springboot/service/websocket/WebSocketServer.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="61">
+              <caret line="65" column="36" lean-forward="true" selection-start-line="65" selection-start-column="36" selection-end-line="65" selection-end-column="36" />
+              <folding>
+                <element signature="e#944#945#0" expanded="true" />
+                <element signature="e#982#983#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CheckCenterController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/chat-controller/src/main/java/com/chat/springboot/controller/CheckCenterController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="342">
+              <caret line="18" column="34" lean-forward="true" selection-start-line="18" selection-start-column="34" selection-end-line="18" selection-end-column="34" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>MyCORSFilter</find>
+    </findStrings>
+    <replaceStrings>
+      <replace />
+    </replaceStrings>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/chat-controller/src/main/java/com/chat/springboot/controller/chatmessage/RequestMessage.java" />
+        <option value="$PROJECT_DIR$/chat-controller/src/main/java/com/chat/springboot/controller/chatmessage/ResponseMessage.java" />
+        <option value="$PROJECT_DIR$/chat-controller/src/main/java/com/chat/springboot/controller/WebSocketConfig.java" />
+        <option value="$PROJECT_DIR$/chat-controller/src/main/java/com/chat/springboot/controller/WebSocketController.java" />
+        <option value="$PROJECT_DIR$/chat-service/src/main/java/com/chat/springboot/service/websocket/WebSocketController.java" />
+        <option value="$PROJECT_DIR$/chat-controller/src/main/java/com/chat/springboot/controller/CheckCenterController.java" />
+        <option value="$PROJECT_DIR$/chat-web-service/src/main/java/com/chat/springboot/filter/MyCORSFilter.java" />
+        <option value="$PROJECT_DIR$/chat-service/src/main/java/com/chat/springboot/service/websocket/WebSocketServer.java" />
+      </list>
+    </option>
   </component>
   <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
   <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
@@ -192,16 +114,21 @@
     <packageJsonPaths />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-8" />
-    <option name="width" value="668" />
+    <option name="x" value="540" />
+    <option name="y" value="14" />
+    <option name="width" value="924" />
     <option name="height" value="688" />
   </component>
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -209,55 +136,33 @@
               <item name="chat" type="b2602c69:ProjectViewProjectNode" />
               <item name="chat" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="chat" type="b2602c69:ProjectViewProjectNode" />
-              <item name="chat" type="462c0819:PsiDirectoryNode" />
-              <item name="chat-web-service" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="chat" type="b2602c69:ProjectViewProjectNode" />
-              <item name="chat" type="462c0819:PsiDirectoryNode" />
-              <item name="chat-web-service" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="chat" type="b2602c69:ProjectViewProjectNode" />
-              <item name="chat" type="462c0819:PsiDirectoryNode" />
-              <item name="chat-web-service" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="chat" type="b2602c69:ProjectViewProjectNode" />
-              <item name="chat" type="462c0819:PsiDirectoryNode" />
-              <item name="chat-web-service" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="chat" type="b2602c69:ProjectViewProjectNode" />
-              <item name="chat" type="462c0819:PsiDirectoryNode" />
-              <item name="chat-web-service" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="springboot" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelOrder2" value="2" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="RequestMappingsPanelWidth2" value="75" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../chat-font-web" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\IdeaProjects\chat\chat-service\src\main\java\com\chat\springboot\service\websocket" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -334,53 +239,57 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="906c0511-c00e-4cf0-9a2b-6d19a6901972" name="Default" comment="" />
-      <created>1528708645461</created>
+      <changelist id="af2c0bc7-a9f1-403f-a3b3-1e525d609ba8" name="Default" comment="" />
+      <created>1528857083415</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1528708645461</updated>
-      <workItem from="1528708647181" duration="446000" />
+      <updated>1528857083415</updated>
+      <workItem from="1528857085042" duration="764000" />
+      <workItem from="1529027413791" duration="11750000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="446000" />
+    <option name="totallyTimeSpent" value="12514000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info anchor="right" id="Palette" />
-      <window_info anchor="bottom" id="Event Log" side_tool="true" />
-      <window_info anchor="right" id="Maven Projects" />
-      <window_info anchor="bottom" id="Database Changes" show_stripe_button="false" />
-      <window_info id="Capture Tool" />
-      <window_info id="Designer" />
-      <window_info anchor="right" id="Database" />
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
+      <window_info anchor="right" id="Maven Projects" order="3" />
+      <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
+      <window_info id="Capture Tool" order="2" />
+      <window_info id="Designer" order="2" />
+      <window_info anchor="right" id="Database" order="3" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info id="UI Designer" />
+      <window_info id="UI Designer" order="2" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Messages" />
-      <window_info anchor="right" id="Palette&#9;" />
-      <window_info id="Image Layers" />
-      <window_info anchor="bottom" id="Java Enterprise" />
-      <window_info anchor="right" id="Capture Analysis" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.3371901" />
-      <window_info active="true" anchor="bottom" id="Version Control" visible="true" weight="0.74876034" />
-      <window_info anchor="bottom" id="Spring" />
-      <window_info anchor="bottom" id="Terminal" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24962178" />
-      <window_info anchor="right" id="Bean Validation" />
-      <window_info id="Web" side_tool="true" />
-      <window_info anchor="right" id="Theme Preview" />
-      <window_info id="Favorites" side_tool="true" />
+      <window_info anchor="right" id="Palette&#9;" order="3" />
+      <window_info id="Image Layers" order="2" />
+      <window_info anchor="bottom" id="Java Enterprise" order="7" />
+      <window_info anchor="right" id="Capture Analysis" order="3" />
+      <window_info anchor="bottom" id="Version Control" order="7" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.37851238" />
+      <window_info anchor="bottom" id="Spring" order="7" />
+      <window_info anchor="bottom" id="Terminal" order="7" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2700454" />
+      <window_info anchor="right" id="Bean Validation" order="3" />
+      <window_info id="Web" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Theme Preview" order="3" />
+      <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="JSF" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="right" id="CDI" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -389,24 +298,199 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="修改包名" />
-    <option name="LAST_COMMIT_MESSAGE" value="修改包名" />
-  </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/chat-controller/src/main/java/com/chat/springboot/controller/chatmessage/RequestMessage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
+          <folding>
+            <element signature="e#174#175#0" expanded="true" />
+            <element signature="e#204#205#0" expanded="true" />
+            <element signature="e#250#251#0" expanded="true" />
+            <element signature="e#288#289#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/chat-controller/src/main/java/com/chat/springboot/controller/chatmessage/ResponseMessage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="13" column="44" lean-forward="true" selection-start-line="13" selection-start-column="44" selection-end-line="13" selection-end-column="44" />
+          <folding>
+            <element signature="e#174#175#0" expanded="true" />
+            <element signature="e#204#205#0" expanded="true" />
+            <element signature="e#288#289#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/chat-web-service/src/main/java/com/chat/springboot/aop/LogAspj.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="27">
+          <caret line="56" selection-start-line="56" selection-end-line="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/chat-controller/src/main/java/com/chat/springboot/controller/WebSocketController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="28">
+          <caret line="102" selection-start-line="102" selection-end-line="102" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#374#395#0" expanded="true" />
+            <element signature="e#1645#1660#0" expanded="true" />
+            <element signature="e#1531#1532#0" expanded="true" />
+            <element signature="e#1570#1571#0" expanded="true" />
+            <element signature="e#1780#1781#0" expanded="true" />
+            <element signature="e#1829#1830#0" expanded="true" />
+            <element signature="e#1828#1829#0" expanded="true" />
+            <element signature="e#1877#1878#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/chat-controller/src/main/java/com/chat/springboot/controller/WebSocketConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="10" column="16" lean-forward="true" selection-start-line="10" selection-start-column="16" selection-end-line="10" selection-end-column="16" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#219#220#0" expanded="true" />
+            <element signature="e#270#271#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/chat-controller/src/main/java/com/chat/springboot/controller/CheckCenterController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="18" column="34" lean-forward="true" selection-start-line="18" selection-start-column="34" selection-end-line="18" selection-end-column="34" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/chat-service/src/main/java/com/chat/springboot/service/websocket/WebSocketConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/chat-web-service/src/main/java/com/chat/springboot/filter/MyCORSFilter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="106">
+          <caret line="32" column="45" lean-forward="true" selection-start-line="32" selection-start-column="45" selection-end-line="32" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="246">
+          <caret line="172" column="48" selection-start-line="172" selection-start-column="48" selection-end-line="172" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/chat-web-service/src/main/java/com/chat/springboot/SpringBootChatApplication.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="66">
-          <caret line="17" column="40" lean-forward="true" selection-start-line="17" selection-start-column="40" selection-end-line="17" selection-end-column="40" />
+        <state relative-caret-position="209">
+          <caret line="17" column="40" selection-start-line="17" selection-start-column="40" selection-end-line="17" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/chat-service/src/main/java/com/chat/springboot/service/websocket/WebSocketServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="61">
+          <caret line="65" column="36" lean-forward="true" selection-start-line="65" selection-start-column="36" selection-end-line="65" selection-end-column="36" />
+          <folding>
+            <element signature="e#944#945#0" expanded="true" />
+            <element signature="e#982#983#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
   </component>
   <component name="masterDetails">
     <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <last-edited>Spring</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>chat-web-service</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+                <option value="0.6" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
       <state key="ProjectJDKs.UI">
         <settings>
           <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <last-edited>Maven: ch.qos.logback:logback-classic:1.1.11</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
