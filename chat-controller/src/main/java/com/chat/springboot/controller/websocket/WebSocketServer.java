@@ -1,4 +1,4 @@
-package com.chat.springboot.service.websocket;
+package com.chat.springboot.controller.websocket;
 
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -38,7 +38,7 @@ public class WebSocketServer {
         webSocketSet.add(this);
         addOnlineCount();
         try{
-            sendMessage("连接成功");
+            sendMessage("收到服务器的消息：连接成功！");
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -59,7 +59,7 @@ public class WebSocketServer {
         //群发消息
         for (WebSocketServer item : webSocketSet) {
             try {
-                item.sendMessage(message);
+                item.sendMessage("我已经收到了你发送的："+message);
             } catch (Exception e) {
                 e.printStackTrace();
             }
