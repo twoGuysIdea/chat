@@ -30,12 +30,6 @@ import redis.clients.jedis.JedisPool;
 public class LogAspj {
 
 	private final static Logger logger = Logger.getLogger(LogAspj.class);
-	@Autowired
-	private JedisPool jedisPool;
-	@Autowired
-	private Jedis jedis;
-	
-	
 	
 	/**
 	 * <pre>
@@ -55,21 +49,20 @@ public class LogAspj {
 	public void log(JoinPoint joinPoint) {
 		ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
 		HttpServletRequest request = attributes.getRequest();
-		// url
-		logger.info("url = " + request.getRequestURI());
-		// ip
-		logger.info("ip = " + request.getRemoteAddr());
-		// 类方法
-		logger.info("class : " + joinPoint.getSignature().getDeclaringTypeName() + " method:"
-				+ joinPoint.getSignature().getName());
-		// 参数
-		logger.info("agr :" + joinPoint.getArgs());
+		// 记录接口被访问频率
+		logger.info("ip地址:" + request.getRemoteAddr() + "...访问的url:" + request.getRequestURI());
+		/*
+		 * // 类方法 logger.info("class : " +
+		 * joinPoint.getSignature().getDeclaringTypeName() + " method:" +
+		 * joinPoint.getSignature().getName()); // 参数 logger.info("agr :" +
+		 * joinPoint.getArgs());
+		 */
 	}
 
-	@AfterReturning(value = "logPointCut()", returning = "object")
-	public void getId(Object object) {
-		String json = JSONObject.toJSONString(object);
-		logger.info(json);
-	//	jedis.lpush("spring_boot_log", json);
-	}
+	/*
+	 * @AfterReturning(value = "logPointCut()", returning = "object") public
+	 * void getId(Object object) {
+	 * 
+	 * }
+	 */
 }
