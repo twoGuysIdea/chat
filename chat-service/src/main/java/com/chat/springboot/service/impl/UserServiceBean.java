@@ -65,7 +65,6 @@ public class UserServiceBean implements UserService{
 	}
 
 	@Override
-	@Cacheable(value = "user")
 	public User findById(String id) {
 		return userMapper.selectByPrimaryKey(Integer.parseInt(id));
 	}
