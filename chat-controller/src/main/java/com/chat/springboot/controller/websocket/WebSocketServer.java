@@ -2,6 +2,7 @@ package com.chat.springboot.controller.websocket;
 
 import java.io.IOException;
 import java.util.List;
+
 import javax.websocket.OnClose;
 import javax.websocket.OnError;
 import javax.websocket.OnMessage;
@@ -9,9 +10,11 @@ import javax.websocket.OnOpen;
 import javax.websocket.Session;
 import javax.websocket.server.PathParam;
 import javax.websocket.server.ServerEndpoint;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.Pipeline;
@@ -54,7 +57,7 @@ public class WebSocketServer {
 		Pipeline pipeline = jedis.pipelined(); // redis管道技术
 		pipeline.sadd("online_people", uuid);// 添加在线人数
 		pipeline.incr("online_count");// 人数++
-	//	pipeline.hset("match_peer", uuid, "noPeer");// 匹配的伙伴 一开始 为自身 + nopeer
+		// pipeline.hset("match_peer", uuid, "noPeer");// 匹配的伙伴 一开始 为自身 + nopeer
 		List<Object> list = pipeline.syncAndReturnAll();// 发送redis管道
 		logger.info("redis管道返回结果:" + list.toString());
 		jedis.close();
@@ -71,18 +74,31 @@ public class WebSocketServer {
 	 */
 	@OnClose
 	public void onClose() {
-		/*
-		 * Jedis jedis = jedisPool.getResource(); Transaction transaction =
-		 * jedis.multi(); transaction.decr("online_count");// 人数--
-		 * transaction.srem("online_people", currentUserName);// 移除用户
-		 * transaction.srem("no_match_people", currentUserName);// 移除用户
-		 * transaction.hdel("match_peer", currentUserName);//移除匹配用户 //
-		 * 判定一下是否匹配过用户，如果有，则通知对方用户 该用户下线，并且解除两边的匹配关系 if (matchUserName != null)
-		 * { transaction.hset("match_peer", matchUserName, "noPeer"); }
-		 * 
-		 * 
-		 * transaction.exec(); jedis.disconnect();
-		 */
+		logger.info(currentUserName + "用户退出了聊天.....");
+		Jedis jedis = jedisPool.getResource();
+		Transaction transaction = jedis.multi();
+		transaction.decr("online_count");// 人数--
+		transaction.srem("online_people", currentUserName);// 移除用户
+		// 判定一下是否匹配过用户，如果有，则通知对方用户 该用户下线，并且解除两边的匹配关系
+		if (matchUserName != null) { // 解除用户匹配关系
+			transaction.hdel("match_peer", currentUserName);
+			transaction.hdel("match_peer", matchUserName);
+
+			// 通知对方用户我方已经下线
+			try {
+				for (WebSocketServer item : AllWebSocket.set) {
+					if (matchUserName.equals(item.getCurrentUserName())) {
+						item.setMatchUserName(null);
+						item.sendMessage("系统提示:对方退出了聊天,匹配关系解除!");
+					}
+				}
+			} catch (Exception e) { // 如果浏览器被关闭了 会走到这里发生异常 无需关注
+				e.printStackTrace();
+			}
+
+		}
+		transaction.exec();
+		jedis.disconnect();
 		AllWebSocket.set.remove(this);
 	}
 
@@ -97,21 +113,16 @@ public class WebSocketServer {
 		if (matchUserName == null) { // 匹配用户为空，则进入匹配
 			Jedis jedis = jedisPool.getResource();
 			jedis.sadd("online_match_people", currentUserName);// 将自身写入匹配队列
-			/*boolean startMatch = false;
-			for (int i = 0; i < 3; i++) {
-				if (jedis.scard("online_match_people") >= 2) {
-					startMatch = true;
-					break;
-				} else {
-					Thread.sleep(2000);
-				}
-			}*/
+			/*
+			 * boolean startMatch = false; for (int i = 0; i < 3; i++) { if
+			 * (jedis.scard("online_match_people") >= 2) { startMatch = true;
+			 * break; } else { Thread.sleep(2000); } }
+			 */
 			Thread.sleep(5000);
-		/*	if (!startMatch) { // 告诉人太少了
-				jedis.srem("online_match_people", currentUserName);
-				sendMessage("当前正在匹配的小伙伴太少...请稍后再试");
-				return;
-			}*/
+			/*
+			 * if (!startMatch) { // 告诉人太少了 jedis.srem("online_match_people",
+			 * currentUserName); sendMessage("当前正在匹配的小伙伴太少...请稍后再试"); return; }
+			 */
 			String peer = jedis.spop("online_match_people");// 从set中随机弹出一个元素
 			if (peer.equals(currentUserName)) {// 如果匹配到自身，则直接返回
 				sendMessage("小伙子....你匹配到自己了..");
@@ -132,7 +143,7 @@ public class WebSocketServer {
 				matchUserName = peer;// 赋值小伙伴
 				sendMessage("已经为您匹配小伙伴成功...对方id:" + peer);
 			} else { // 配对自身指定玩家失败
-				Thread.sleep(3000); // 等待匹配成功的结果
+				Thread.sleep(2000); // 等待匹配成功的结果
 				String matchPeer = jedis.hget("match_peer", currentUserName);
 				if (matchPeer != null) {// 查询是否被匹配过
 					logger.info("有玩家被动匹配了.....");
@@ -142,8 +153,9 @@ public class WebSocketServer {
 					sendMessage("暂未匹配到合适的小伙伴....请稍后再试");
 				}
 			}
-			/*jedis.del(currentUserName);// 删除标志位
-			jedis.del(peer);*/
+			/*
+			 * jedis.del(currentUserName);// 删除标志位 jedis.del(peer);
+			 */
 			jedis.disconnect();// 关闭连接
 		} else {
 			// 发送指定消息过去
