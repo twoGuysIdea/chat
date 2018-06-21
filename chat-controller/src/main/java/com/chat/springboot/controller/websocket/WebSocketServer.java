@@ -36,7 +36,7 @@ public class WebSocketServer {
 	private String matchUserName;
 
 	public WebSocketServer() {
-
+		logger.info("有新的用户建立了websocket连接......");
 	}
 
 	@Autowired
