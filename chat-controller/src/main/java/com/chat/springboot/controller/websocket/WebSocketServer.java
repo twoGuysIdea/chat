@@ -76,18 +76,31 @@ public class WebSocketServer {
 	 */
 	@OnClose
 	public void onClose() {
-		/*
-		 * Jedis jedis = jedisPool.getResource(); Transaction transaction =
-		 * jedis.multi(); transaction.decr("online_count");// 人数--
-		 * transaction.srem("online_people", currentUserName);// 移除用户
-		 * transaction.srem("no_match_people", currentUserName);// 移除用户
-		 * transaction.hdel("match_peer", currentUserName);//移除匹配用户 //
-		 * 判定一下是否匹配过用户，如果有，则通知对方用户 该用户下线，并且解除两边的匹配关系 if (matchUserName != null)
-		 * { transaction.hset("match_peer", matchUserName, "noPeer"); }
-		 *
-		 *
-		 * transaction.exec(); jedis.disconnect();
-		 */
+		logger.info(currentUserName + "用户退出了聊天.....");
+		Jedis jedis = jedisPool.getResource();
+		Transaction transaction = jedis.multi();
+		transaction.decr("online_count");// 人数--
+		transaction.srem("online_people", currentUserName);// 移除用户
+		// 判定一下是否匹配过用户，如果有，则通知对方用户 该用户下线，并且解除两边的匹配关系
+		if (matchUserName != null) { // 解除用户匹配关系
+			transaction.hdel("match_peer", currentUserName);
+			transaction.hdel("match_peer", matchUserName);
+
+			// 通知对方用户我方已经下线
+			try {
+				for (WebSocketServer item : AllWebSocket.set) {
+					if (matchUserName.equals(item.getCurrentUserName())) {
+						item.setMatchUserName(null);
+						item.sendMessage("系统提示:对方退出了聊天,匹配关系解除!");
+					}
+				}
+			} catch (Exception e) { // 如果浏览器被关闭了 会走到这里发生异常 无需关注
+				e.printStackTrace();
+			}
+
+		}
+		transaction.exec();
+		jedis.disconnect();
 		AllWebSocket.set.remove(this);
 	}
 
