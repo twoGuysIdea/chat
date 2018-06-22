@@ -2,6 +2,7 @@ package com.chat.springboot.aop;
 
 import java.lang.reflect.Method;
 
+import org.apache.log4j.Logger;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.Signature;
 import org.aspectj.lang.annotation.Around;
@@ -22,6 +23,8 @@ import com.chat.springboot.common.ValidatePage;
 //@Aspect
 //@Component
 public class PageBeanAop {
+	
+	private final static Logger logger = Logger.getLogger(PageBeanAop.class);
 
 	/**
 	 * <pre>
@@ -48,7 +51,7 @@ public class PageBeanAop {
 		Method method = methodSignature.getMethod();
 		if (method.getAnnotation(ValidatePage.class) != null) { // 方法上存在pageBean注解并且pageSize或者pageNo
 																// 为空 则替换参数
-			System.out.println("pageBeanAop执行校验中..........并且成功拦截到");
+			logger.info("pageBeanAop执行分页参数校验中.....");
 			String argsName[] = methodSignature.getParameterNames();// 获取参数名称
 			for (int i = 0; i < argsName.length; i++) {
 
