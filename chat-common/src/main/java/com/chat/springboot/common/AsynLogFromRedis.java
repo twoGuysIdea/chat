@@ -46,13 +46,14 @@ public class AsynLogFromRedis {
 		logger.info("当前时间:" + df.format(new Date()) + "..开始执行日志同步任务......");
 		long startTime = System.currentTimeMillis();
 		Jedis jedis = jedisPool.getResource();
-		List<String> logLists = jedis.lrange("chat-web-log", 0, 9);// 截取最前面的99条日志
-		jedis.ltrim("chat-web-log", 10, -1);// 只保留99条记录之后的数据
+		List<String> logLists = jedis.lrange("chat-web-log", 0, 99);// 截取最前面的99条日志
+		jedis.ltrim("chat-web-log", 100, -1);// 只保留99条记录之后的数据
 		List<JSONObject> dealList = new ArrayList<JSONObject>();
 		for (String item : logLists) {
 			JSONObject jsonItem = JSONObject.parseObject(item);
 			jsonItem.remove("tags");
 			jsonItem.remove("type");
+			jsonItem.remove("path");
 			try {
 				jsonItem.put("create_time", DateUtils.formatUTC(jsonItem.getString("@timestamp")));
 			} catch (Exception e) {
