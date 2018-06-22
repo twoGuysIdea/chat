@@ -4,12 +4,9 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
-import org.springframework.data.mongodb.core.MongoTemplate;
-import org.springframework.data.mongodb.core.query.Criteria;
-import org.springframework.data.mongodb.core.query.Query;
-import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Service;
 
+import com.chat.springboot.common.PageBean;
 import com.chat.springboot.dao.PersonDao;
 import com.chat.springboot.domain.Person;
 import com.chat.springboot.domain.Result;
@@ -21,13 +18,13 @@ public class PersonServiceBean implements PersonService {
 
 	@Resource
 	private PersonDao personDao;
-	@Resource
-	private MongoTemplate mongoTemplate;
+	
 
 	@Override
-	public int insert(Person person) {
-		System.out.println(personDao.insert(person).toString());
-		return 1;
+	public Result<Object> insert(Person person) {
+		Result<Object> result = new Result<Object>();
+		personDao.insert(person);
+		return result.setCode(ResultStatus.SUCCESS).setData(person);
 	}
 
 	@Override
@@ -43,18 +40,7 @@ public class PersonServiceBean implements PersonService {
 	@Override
 	public Result<Object> update(Person person) {
 		Result<Object> result = new Result<Object>();
-		Query query = new Query();
-		Criteria criteria = new Criteria();
-		criteria.and("_id").is(person.getId());
-		query.addCriteria(criteria);
-		Update update = new Update();
-		if (person.getName() != null) {
-			update.set("name", person.getName());
-		}
-		if (person.getAge() != null) {
-			update.set("age", person.getAge());
-		}
-		mongoTemplate.updateFirst(query, update, Person.class);
+		personDao.updateExistDataById(person);
 		return result.setCode(ResultStatus.SUCCESS);
 	}
 
@@ -75,10 +61,13 @@ public class PersonServiceBean implements PersonService {
 	@Override
 	public Result<Object> findByPage(Integer pageSize, Integer pageNo) {
 		Result<Object> result = new Result<Object>();
-		Query query = new Query();
-		query.skip((pageNo - 1) * pageSize).limit(pageSize);
-		List<Person> list = mongoTemplate.find(query, Person.class);
-		return result.setCode(ResultStatus.SUCCESS).setData(list);
+		PageBean<Person> pageBean = new PageBean<Person>();//
+		pageBean.setCurrentPage(pageNo);
+		pageBean.setPageSize(pageSize);
+		pageBean.setTotalCount((int) personDao.count());//
+		List<Person> list = personDao.findPage(pageSize, pageNo); 
+		pageBean.setList(list);
+		return result.setCode(ResultStatus.SUCCESS).setData(pageBean);
 	}
 
 }

@@ -11,7 +11,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
  * @date 2018年6月4日
  * @time 下午1:59:36
  */
-@Document(collection = "Person")
+@Document(collection = "person")
 public class Person {
 	
 	/**

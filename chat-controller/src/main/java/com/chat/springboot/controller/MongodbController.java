@@ -1,6 +1,7 @@
 package com.chat.springboot.controller;
 
 import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,6 +14,10 @@ import com.chat.springboot.domain.Person;
 import com.chat.springboot.domain.Result;
 import com.chat.springboot.domain.ResultStatus;
 import com.chat.springboot.service.PersonService;
+
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
 
 /**
  * <pre>
@@ -36,10 +41,10 @@ public class MongodbController {
 	 * @return
 	 */
 	@RequestMapping(value = "/insert", method = { RequestMethod.POST, RequestMethod.GET })
+	@ApiOperation(value = "新增一个人")
+	@ApiImplicitParam(name = "person", value = "人员信息", required = true, dataType = "person", paramType = "body")
 	public Result<Object> insert(Person person) {
-		Result<Object> result = new Result<Object>();
-		personService.insert(person);
-		return result.setCode(ResultStatus.SUCCESS).setData(person);
+		return personService.insert(person);
 	}
 
 	/**
@@ -49,9 +54,10 @@ public class MongodbController {
 	 * @return
 	 */
 	@RequestMapping(value = "/delete/{id}", method = { RequestMethod.POST, RequestMethod.GET })
+	@ApiOperation(value = "删除一个人")
+	@ApiImplicitParam(name = "id", value = "人员id", required = true, dataType = "Integer")
 	public Result<Object> delete(@PathVariable("id") Integer id) {
-		Result<Object> result = personService.delete(id);
-		return result.setCode(ResultStatus.SUCCESS).setData(id);
+		return personService.delete(id);
 	}
 
 	/**
@@ -62,6 +68,8 @@ public class MongodbController {
 	 * @return
 	 */
 	@RequestMapping(value = "/update", method = { RequestMethod.GET, RequestMethod.POST })
+	@ApiOperation(value = "更新一个人")
+	@ApiImplicitParam(name = "person", value = "人员信息", required = true, dataType = "Integer")
 	public Result<Object> update(@Valid Person person, BindingResult bindingResult) {
 		if (bindingResult.hasErrors()) {
 			return new Result<Object>().setCode(ResultStatus.LACK_PARAM)
@@ -78,8 +86,7 @@ public class MongodbController {
 	 */
 	@RequestMapping(value = "/find/all", method = { RequestMethod.GET, RequestMethod.POST })
 	public Result<Object> findAll() {
-		Result<Object> result = personService.findAll();
-		return result;
+		return personService.findAll();
 	}
 
 	/**
@@ -90,8 +97,7 @@ public class MongodbController {
 	 */
 	@RequestMapping(value = "/find/detail/{id}", method = { RequestMethod.GET, RequestMethod.POST })
 	public Result<Object> findById(@PathVariable("id") Integer id) {
-		Result<Object> result = personService.findById(id);
-		return result;
+		return personService.findById(id);
 	}
 
 	/**
@@ -101,10 +107,13 @@ public class MongodbController {
 	 * @param pageNo
 	 * @return
 	 */
-	@RequestMapping(value = "/find/page", method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value = "/find/page", method = RequestMethod.GET)
 	@ValidatePage
+	@ApiOperation(value = "分页查询")
+	@ApiImplicitParams(value = {
+			@ApiImplicitParam(name = "pageSize", value = "分页尺寸", required = false, dataType = "Integer", paramType = "query"),
+			@ApiImplicitParam(name = "pageNo", value = "当前页数", required = false, dataType = "Integer", paramType = "query") })
 	public Result<Object> findByPage(Integer pageSize, Integer pageNo) {
-		Result<Object> result = personService.findByPage(pageSize, pageNo);
-		return result;
+		return personService.findByPage(pageSize, pageNo);
 	}
 }
