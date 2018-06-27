@@ -1,5 +1,8 @@
 package com.chat.springboot.common;
 
+/**
+ * 定义状态、信息的枚举类
+ */
 public enum ChatCode {
 
     REMOVE("remove_random_friend");
