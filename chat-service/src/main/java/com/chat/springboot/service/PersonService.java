@@ -10,7 +10,7 @@ public interface PersonService {
 	 * @param person
 	 * @return
 	 */
-	public int insert(Person person);
+	public Result<Object> insert(Person person);
 
 	/**
 	 * 根据id删除

@@ -13,9 +13,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
-import org.springframework.boot.web.servlet.FilterRegistrationBean;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 
 /**
  * 配置cors拦截
@@ -51,7 +48,7 @@ public class MyCORSFilter implements Filter {
 		response.setHeader("Access-Control-Allow-Headers", "x-requested-with,Authorization");
 		response.setHeader("Access-Control-Allow-Credentials", "true");
 		HttpServletRequest request = (HttpServletRequest) servletRequest;
-		logger.info("执行了cors......" + "url = " + request.getRequestURI() + " 请求来自:" + request.getRemoteAddr());
+		logger.info("执行了cors跨域过滤......" + "url = " + request.getRequestURI() + " 请求来自:" + request.getRemoteAddr());
 		filterChain.doFilter(servletRequest, servletResponse);
 	}
 
