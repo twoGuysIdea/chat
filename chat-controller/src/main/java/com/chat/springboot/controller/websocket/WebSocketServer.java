@@ -13,6 +13,7 @@ import javax.websocket.server.PathParam;
 import javax.websocket.server.ServerEndpoint;
 
 import com.alibaba.fastjson.JSON;
+import com.chat.springboot.common.ChatCode;
 import com.chat.springboot.common.ResultMap;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -91,7 +92,7 @@ public class WebSocketServer {
 				for (WebSocketServer item : AllWebSocket.set) {
 					if (matchUserName.equals(item.getCurrentUserName())) {
 						item.setMatchUserName(null);
-						item.sendMessage("系统提示:对方退出了聊天,匹配关系解除!");
+						item.sendMessage(ResultMap.RESULT(true,3,"remove_random_friend"));
 					}
 				}
 			} catch (Exception e) { // 如果浏览器被关闭了 会走到这里发生异常 无需关注
@@ -164,9 +165,31 @@ public class WebSocketServer {
 			jedis.del(peer);*/
 			jedis.disconnect();// 关闭连接
 		} else {
+			if (message.equals(ChatCode.REMOVE.getMessage())){//如果得到的消息是解除匹配关系
+				System.out.println("收到"+currentUserName+"解除"+matchUserName+"的请求");
+				Jedis jedis = jedisPool.getResource();
+				Transaction transaction = jedis.multi();//开启事务
+				transaction.del(currentUserName);// 删除标志位
+				transaction.del(matchUserName);
+				transaction.hdel("match_peer",currentUserName);//删除自己方的信息
+				transaction.hdel("match_peer",matchUserName);
+				transaction.exec();
+				jedis.disconnect();
+				try {
+					for (WebSocketServer item : AllWebSocket.set) {
+						if (matchUserName.equals(item.getCurrentUserName())) {
+							item.setMatchUserName(null);
+							item.sendMessage(ResultMap.RESULT(true,3,message));
+						}
+					}
+				} catch (Exception e) { // 如果浏览器被关闭了 会走到这里发生异常 无需关注
+					e.printStackTrace();
+				}
+			}else {
+				sendToMatchUser(message,2, matchUserName);
+			}
 			// 发送指定消息过去
 //			sendMessage(ResultMap.RESULT(true,2,message).toString());
-			sendToMatchUser(message, matchUserName);
 		}
 
 	}
@@ -193,14 +216,14 @@ public class WebSocketServer {
 	 * @param matchUserName
 	 * @throws IOException
 	 */
-	public void sendToMatchUser(String message, String matchUserName) throws IOException {
+	public void sendToMatchUser(String message,int type, String matchUserName) throws IOException {
 		for (WebSocketServer item : AllWebSocket.set) {
 
 			if (item.getCurrentUserName().equals(matchUserName)) {
 				Map<String,String> backMsg = new HashMap<>();
 				backMsg.put("user",currentUserName);
 				backMsg.put("message",message);
-				item.sendMessage(ResultMap.RESULT(true,2,JSON.toJSONString(backMsg)));
+				item.sendMessage(ResultMap.RESULT(true,type,JSON.toJSONString(backMsg)));
 			}
 
 		}
