@@ -60,13 +60,13 @@ public class WebSocketServer {
 		Pipeline pipeline = jedis.pipelined(); // redis管道技术
 		pipeline.sadd("online_people", uuid);// 添加在线人数
 		pipeline.incr("online_count");// 人数++
-	//	pipeline.hset("match_peer", uuid, "noPeer");// 匹配的伙伴 一开始 为自身 + nopeer
+		// pipeline.hset("match_peer", uuid, "noPeer");// 匹配的伙伴 一开始 为自身 + nopeer
 		List<Object> list = pipeline.syncAndReturnAll();// 发送redis管道
 		logger.info("redis管道返回结果:" + list.toString());
 		jedis.close();
 		AllWebSocket.set.add(this);
 		try {
-//			sendMessage("收到服务器的消息：连接成功！");
+			// sendMessage("收到服务器的消息：连接成功！");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -92,7 +92,7 @@ public class WebSocketServer {
 				for (WebSocketServer item : AllWebSocket.set) {
 					if (matchUserName.equals(item.getCurrentUserName())) {
 						item.setMatchUserName(null);
-						item.sendMessage(ResultMap.RESULT(true,3,"remove_random_friend"));
+						item.sendMessage(ResultMap.RESULT(true, 3, "remove_random_friend"));
 					}
 				}
 			} catch (Exception e) { // 如果浏览器被关闭了 会走到这里发生异常 无需关注
@@ -116,24 +116,19 @@ public class WebSocketServer {
 		if (matchUserName == null) { // 匹配用户为空，则进入匹配
 			Jedis jedis = jedisPool.getResource();
 			jedis.sadd("online_match_people", currentUserName);// 将自身写入匹配队列
-			/*boolean startMatch = false;
-			for (int i = 0; i < 3; i++) {
-				if (jedis.scard("online_match_people") >= 2) {
-					startMatch = true;
-					break;
-				} else {
-					Thread.sleep(2000);
-				}
-			}*/
+			/*
+			 * boolean startMatch = false; for (int i = 0; i < 3; i++) { if
+			 * (jedis.scard("online_match_people") >= 2) { startMatch = true;
+			 * break; } else { Thread.sleep(2000); } }
+			 */
 			Thread.sleep(5000);
-		/*	if (!startMatch) { // 告诉人太少了
-				jedis.srem("online_match_people", currentUserName);
-				sendMessage("当前正在匹配的小伙伴太少...请稍后再试");
-				return;
-			}*/
+			/*
+			 * if (!startMatch) { // 告诉人太少了 jedis.srem("online_match_people",
+			 * currentUserName); sendMessage("当前正在匹配的小伙伴太少...请稍后再试"); return; }
+			 */
 			String peer = jedis.spop("online_match_people");// 从set中随机弹出一个元素
 			if (peer.equals(currentUserName)) {// 如果匹配到自身，则直接返回
-				sendMessage(ResultMap.RESULT(false,1,"匹配到了自己"));
+				sendMessage(ResultMap.RESULT(false, 1, "咱未匹配到合适人选...请稍后再试"));
 				return;
 			}
 			logger.info("自己的id是：" + currentUserName + "弹出的匹配小伙伴是: " + peer);
@@ -149,47 +144,50 @@ public class WebSocketServer {
 				jedis.hset("match_peer", currentUserName, peer);// 设置配对关系
 				jedis.hset("match_peer", peer, currentUserName);
 				matchUserName = peer;// 赋值小伙伴
-				sendMessage(ResultMap.RESULT(true,1,peer));
+				sendMessage(ResultMap.RESULT(true, 1, peer));
 			} else { // 配对自身指定玩家失败
 				Thread.sleep(3000); // 等待匹配成功的结果
 				String matchPeer = jedis.hget("match_peer", currentUserName);
 				if (matchPeer != null) {// 查询是否被匹配过
 					logger.info("有玩家被动匹配了.....");
 					matchUserName = matchPeer;
-					sendMessage(ResultMap.RESULT(true,1,peer));
+					sendMessage(ResultMap.RESULT(true, 1, peer));
 				} else {
-					sendMessage(ResultMap.RESULT(false,1,null));
+					sendMessage(ResultMap.RESULT(false, 1, null));
 				}
 			}
-			/*jedis.del(currentUserName);// 删除标志位
-			jedis.del(peer);*/
+			/*
+			 * jedis.del(currentUserName);// 删除标志位 jedis.del(peer);
+			 */
 			jedis.disconnect();// 关闭连接
 		} else {
-			if (message.equals(ChatCode.REMOVE.getMessage())){//如果得到的消息是解除匹配关系
-				System.out.println("收到"+currentUserName+"解除"+matchUserName+"的请求");
+			if (message.equals(ChatCode.REMOVE.getMessage())) {// 如果得到的消息是解除匹配关系
+				System.out.println("收到" + currentUserName + "解除" + matchUserName + "的请求");
 				Jedis jedis = jedisPool.getResource();
-				Transaction transaction = jedis.multi();//开启事务
-				transaction.del(currentUserName);// 删除标志位
-				transaction.del(matchUserName);
-				transaction.hdel("match_peer",currentUserName);//删除自己方的信息
-				transaction.hdel("match_peer",matchUserName);
+				Transaction transaction = jedis.multi();// 开启事务
+				/*
+				 * transaction.del(currentUserName);// 删除标志位
+				 * transaction.del(matchUserName);
+				 */
+				transaction.hdel("match_peer", currentUserName);// 删除自己方的信息
+				transaction.hdel("match_peer", matchUserName);
 				transaction.exec();
 				jedis.disconnect();
 				try {
 					for (WebSocketServer item : AllWebSocket.set) {
 						if (matchUserName.equals(item.getCurrentUserName())) {
 							item.setMatchUserName(null);
-							item.sendMessage(ResultMap.RESULT(true,3,message));
+							item.sendMessage(ResultMap.RESULT(true, 3, message));
 						}
 					}
 				} catch (Exception e) { // 如果浏览器被关闭了 会走到这里发生异常 无需关注
 					e.printStackTrace();
 				}
-			}else {
-				sendToMatchUser(message,2, matchUserName);
+			} else {
+				sendToMatchUser(message, 2, matchUserName);
 			}
 			// 发送指定消息过去
-//			sendMessage(ResultMap.RESULT(true,2,message).toString());
+			// sendMessage(ResultMap.RESULT(true,2,message).toString());
 		}
 
 	}
@@ -216,14 +214,14 @@ public class WebSocketServer {
 	 * @param matchUserName
 	 * @throws IOException
 	 */
-	public void sendToMatchUser(String message,int type, String matchUserName) throws IOException {
+	public void sendToMatchUser(String message, int type, String matchUserName) throws IOException {
 		for (WebSocketServer item : AllWebSocket.set) {
 
 			if (item.getCurrentUserName().equals(matchUserName)) {
-				Map<String,String> backMsg = new HashMap<>();
-				backMsg.put("user",currentUserName);
-				backMsg.put("message",message);
-				item.sendMessage(ResultMap.RESULT(true,type,JSON.toJSONString(backMsg)));
+				Map<String, String> backMsg = new HashMap<>();
+				backMsg.put("user", currentUserName);
+				backMsg.put("message", message);
+				item.sendMessage(ResultMap.RESULT(true, type, JSON.toJSONString(backMsg)));
 			}
 
 		}
