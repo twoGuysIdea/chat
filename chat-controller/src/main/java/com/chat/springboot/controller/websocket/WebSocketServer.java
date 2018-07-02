@@ -130,6 +130,7 @@ public class WebSocketServer {
 				jedis.hset("match_peer", twoPeople, onePeople);
 			}
 			//此处停顿3S.获取自身匹配结果
+			Thread.sleep(3000);
 			String matchPeer = jedis.hget("match_peer", currentUserName);
 			if (matchPeer != null) {// 查询是否被匹配过
 				logger.info(currentUserName + "用户和" + matchPeer + "用户匹配成功了......");
