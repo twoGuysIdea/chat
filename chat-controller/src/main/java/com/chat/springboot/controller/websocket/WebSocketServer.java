@@ -21,6 +21,7 @@ import org.springframework.stereotype.Component;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.Pipeline;
+import redis.clients.jedis.Response;
 import redis.clients.jedis.Transaction;
 
 @ServerEndpoint("/webSocket/{uuid}")
@@ -115,54 +116,30 @@ public class WebSocketServer {
 	public void onMessage(String message, Session session) throws Exception {
 		if (matchUserName == null) { // 匹配用户为空，则进入匹配
 			Jedis jedis = jedisPool.getResource();
-			jedis.sadd("online_match_people", currentUserName);// 将自身写入匹配队列
-			/*boolean startMatch = false;
-			for (int i = 0; i < 3; i++) {
-				if (jedis.scard("online_match_people") >= 2) {
-					startMatch = true;
-					break;
-				} else {
-					Thread.sleep(2000);
-				}
-			}*/
+			jedis.lpush("match_people_line", currentUserName);// 将自身写入匹配队列
+			logger.info("用户 " + currentUserName + " 加入了匹配队列.....");
 			Thread.sleep(5000);
-		/*	if (!startMatch) { // 告诉人太少了
-				jedis.srem("online_match_people", currentUserName);
-				sendMessage("当前正在匹配的小伙伴太少...请稍后再试");
-				return;
-			}*/
-			String peer = jedis.spop("online_match_people");// 从set中随机弹出一个元素
-			if (peer.equals(currentUserName)) {// 如果匹配到自身，则直接返回
-				sendMessage(ResultMap.result(false,1,"匹配到了自己"));
-				return;
+			Transaction transaction = jedis.multi();//开启redis事务
+			transaction.rpop("match_people_line");
+			transaction.rpop("match_people_line");
+			List<Object> resultList =  transaction.exec();
+			if (resultList.get(0) != null && resultList.get(1) != null) { //成功匹配
+				String onePeople = resultList.get(0).toString();
+				String twoPeople = resultList.get(1).toString();
+				jedis.hset("match_peer", onePeople, twoPeople);// 设置配对关系
+				jedis.hset("match_peer", twoPeople, onePeople);
 			}
-			logger.info("自己的id是：" + currentUserName + "弹出的匹配小伙伴是: " + peer);
-			// 成功弹出匹配的队友以后。用redis setnx指令 。迅速锁定。防止其他线程继续匹配
-			Transaction transaction = jedis.multi();// 开始redis事务
-			transaction.setnx(currentUserName, "1");// 设置自己标志
-			transaction.setnx(peer, "1");// 设置对方标志
-			transaction.expire(currentUserName, 10);
-			transaction.expire(peer, 10);
-			List<Object> result = transaction.exec();
-			if (result.get(0).toString().equals("1") && result.get(1).toString().equals("1")) { // 此处说明匹配成功
-				logger.info("有玩家成功通过两个标志位匹配了.....");
-				jedis.hset("match_peer", currentUserName, peer);// 设置配对关系
-				jedis.hset("match_peer", peer, currentUserName);
-				matchUserName = peer;// 赋值小伙伴
-				sendMessage(ResultMap.result(true,1,peer));
-			} else { // 配对自身指定玩家失败
-				Thread.sleep(3000); // 等待匹配成功的结果
-				String matchPeer = jedis.hget("match_peer", currentUserName);
-				if (matchPeer != null) {// 查询是否被匹配过
-					logger.info("有玩家被动匹配了.....");
-					matchUserName = matchPeer;
-					sendMessage(ResultMap.result(true,1,peer));
-				} else {
-					sendMessage(ResultMap.result(false,1,null));
-				}
+			//此处停顿3S.获取自身匹配结果
+			String matchPeer = jedis.hget("match_peer", currentUserName);
+			if (matchPeer != null) {// 查询是否被匹配过
+				logger.info(currentUserName + "用户和" + matchPeer + "用户匹配成功了......");
+				matchUserName = matchPeer;
+				sendMessage(ResultMap.result(true,1,matchPeer));
+			} else {
+				logger.info("用户匹配失败......");
+				sendMessage(ResultMap.result(false,1,null));
 			}
-			/*jedis.del(currentUserName);// 删除标志位
-			jedis.del(peer);*/
+			
 			jedis.disconnect();// 关闭连接
 		} else {
 			if (message.equals(ChatCode.REMOVE.getMessage())){//如果得到的消息是解除匹配关系
@@ -300,5 +277,51 @@ public class WebSocketServer {
 	 * // 此处匹配十秒 } else { // 发送指定消息过去 sendToMatchUser(message, matchUserName); }
 	 * 
 	 */
+	
+	/**
+	 * 老的匹配算法
+	 * @param message
+	 * @param session
+	 * @throws Exception
+	 */
+	public void oldMatchWay(String message, Session session) throws Exception {
+		if (matchUserName == null) { // 匹配用户为空，则进入匹配
+			Jedis jedis = jedisPool.getResource();
+			jedis.sadd("online_match_people", currentUserName);// 将自身写入匹配队列
+			Thread.sleep(5000);
+			String peer = jedis.spop("online_match_people");// 从set中随机弹出一个元素
+			if (peer.equals(currentUserName)) {// 如果匹配到自身，则直接返回
+				sendMessage(ResultMap.result(false,1,"匹配到了自己"));
+				return;
+			}
+			logger.info("自己的id是：" + currentUserName + "弹出的匹配小伙伴是: " + peer);
+			// 成功弹出匹配的队友以后。用redis setnx指令 。迅速锁定。防止其他线程继续匹配
+			Transaction transaction = jedis.multi();// 开始redis事务
+			transaction.setnx(currentUserName, "1");// 设置自己标志
+			transaction.setnx(peer, "1");// 设置对方标志
+			transaction.expire(currentUserName, 10);
+			transaction.expire(peer, 10);
+			List<Object> result = transaction.exec();
+			if (result.get(0).toString().equals("1") && result.get(1).toString().equals("1")) { // 此处说明匹配成功
+				logger.info("有玩家成功通过两个标志位匹配了.....");
+				jedis.hset("match_peer", currentUserName, peer);// 设置配对关系
+				jedis.hset("match_peer", peer, currentUserName);
+				matchUserName = peer;// 赋值小伙伴
+				sendMessage(ResultMap.result(true,1,peer));
+			} else { // 配对自身指定玩家失败
+				Thread.sleep(3000); // 等待匹配成功的结果
+				String matchPeer = jedis.hget("match_peer", currentUserName);
+				if (matchPeer != null) {// 查询是否被匹配过
+					logger.info("有玩家被动匹配了.....");
+					matchUserName = matchPeer;
+					sendMessage(ResultMap.result(true,1,peer));
+				} else {
+					sendMessage(ResultMap.result(false,1,null));
+				}
+			}
+			jedis.disconnect();// 关闭连接
+		}
+	}
+	
 
 }
