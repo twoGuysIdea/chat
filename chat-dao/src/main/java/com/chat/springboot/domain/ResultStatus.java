@@ -20,6 +20,7 @@ public enum ResultStatus{
 	ONLY_SMALL("你可能还在上小学", 100),
 	ONLY_MIDDLE("你可能还在上中学", 101),
 	ONLY_BIG("你可能还在上大学", 102),
+	USER_IS_REGISTER("用户已经被注册过了", 1123);
 	;
 
 	/**
