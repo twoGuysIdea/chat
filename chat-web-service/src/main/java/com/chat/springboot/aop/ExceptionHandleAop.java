@@ -1,4 +1,5 @@
 package com.chat.springboot.aop;
+
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -19,17 +20,23 @@ import com.chat.springboot.domain.ProjectException;
  */
 @ControllerAdvice
 public class ExceptionHandleAop {
-	
+
 	private final static Logger logger = Logger.getLogger(ExceptionHandleAop.class);
 
 	@ResponseBody
 	@ExceptionHandler(value = Exception.class)
 	public Result<Object> handle(Exception e) {
 		Result<Object> result = new Result<Object>();
-	/*	if (e instanceof ProjectException) {
-			return result.setCode(((ProjectException) e).getCode()).setMessage(e.getMessage());
-		}*/
+		if (e instanceof ProjectException) {
+			ProjectException projectException = (ProjectException) e;
+			ResultStatus resultStatus = projectException.getResultStatus();
+			if (projectException.getDetailMsg() != null) {
+				result.setData(projectException.getDetailMsg());
+			}
+			return result.setCode(resultStatus);
+		}
 		logger.error("出现了系统未知的错误-----！！！！", e);
+		e.printStackTrace();// 未知错误，打印出来
 		return result.setCode(ResultStatus.UNKNOW);
 	}
 }
