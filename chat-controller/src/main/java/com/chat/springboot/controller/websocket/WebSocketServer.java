@@ -1,5 +1,7 @@
 package com.chat.springboot.controller.websocket;
 
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.log;
+
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
@@ -63,7 +65,6 @@ public class WebSocketServer {
 		pipeline.incr("online_count");// 人数++
 	//	pipeline.hset("match_peer", uuid, "noPeer");// 匹配的伙伴 一开始 为自身 + nopeer
 		List<Object> list = pipeline.syncAndReturnAll();// 发送redis管道
-		logger.info("redis管道返回结果:" + list.toString());
 		jedis.close();
 		AllWebSocket.set.add(this);
 		try {
@@ -130,7 +131,7 @@ public class WebSocketServer {
 				jedis.hset("match_peer", twoPeople, onePeople);
 			}
 			//此处停顿3S.获取自身匹配结果
-			Thread.sleep(3000);
+			Thread.sleep(2000);
 			String matchPeer = jedis.hget("match_peer", currentUserName);
 			if (matchPeer != null) {// 查询是否被匹配过
 				logger.info(currentUserName + "用户和" + matchPeer + "用户匹配成功了......");
@@ -138,13 +139,13 @@ public class WebSocketServer {
 				sendMessage(ResultMap.result(true,1,matchPeer));
 			} else {
 				logger.info("用户匹配失败......");
-				sendMessage(ResultMap.result(false,1,null));
+				sendMessage(ResultMap.result(false,1,"未匹配到合适用户,请稍后再试"));
 			}
 			
 			jedis.disconnect();// 关闭连接
 		} else {
 			if (message.equals(ChatCode.REMOVE.getMessage())){//如果得到的消息是解除匹配关系
-				System.out.println("收到"+currentUserName+"解除"+matchUserName+"的请求");
+				logger.info("收到"+currentUserName+"解除"+matchUserName+"的请求");
 				Jedis jedis = jedisPool.getResource();
 				Transaction transaction = jedis.multi();//开启事务
 				transaction.del(currentUserName);// 删除标志位

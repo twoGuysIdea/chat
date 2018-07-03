@@ -34,4 +34,18 @@ public class UserInfoServiceBean implements UserInfoService {
 
 	}
 
+	@Override
+	public boolean login(UserInfo userInfo) {
+		UserInfo searchUser = userInfoDao.findByUserName(userInfo.getUserName());
+		if (searchUser == null) { //未找到该用户
+			return false;
+		}
+		String password = SignUtil.AddSalt(userInfo.getUserName(),
+				userInfo.getPassword(), searchUser.getSalt())[0]; //根据用过户传输的密码以及查询出来的salt 计算值
+		if (password.equals(searchUser.getPassword())) { //加密后结果 与 预期一致
+			return true;
+		}
+		return false;
+	}
+
 }

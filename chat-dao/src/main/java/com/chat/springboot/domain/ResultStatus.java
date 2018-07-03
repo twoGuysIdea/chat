@@ -1,4 +1,5 @@
 package com.chat.springboot.domain;
+
 /**
  * <pre>
  * 功       能:返回状态枚举类 
@@ -8,20 +9,20 @@ package com.chat.springboot.domain;
  * Q    Q: 2873824885
  * </pre>
  */
-public enum ResultStatus{
+public enum ResultStatus {
 	/**
 	 * 枚举类型
 	 */
 	DATA_NOT_FIND("数据没有找到", 0), 
-	SUCCESS("返回结果成功", 1),
+	SUCCESS("返回结果成功", 1), 
 	LACK_PARAM("缺乏基本参数", 2),
-	DEFINE_ERROR("自定义错误", 12580),
-	UNKNOW("出现未知错误", -1),
-	ONLY_SMALL("你可能还在上小学", 100),
-	ONLY_MIDDLE("你可能还在上中学", 101),
-	ONLY_BIG("你可能还在上大学", 102),
-	USER_IS_REGISTER("用户已经被注册过了", 1123);
-	;
+	DEFINE_ERROR("自定义错误", 3), 
+	UNKNOW("出现未知错误", -1), 
+	ONLY_SMALL("你可能还在上小学", 4), 
+	ONLY_MIDDLE("你可能还在上中学", 5), 
+	ONLY_BIG("你可能还在上大学", 6),
+	USER_IS_REGISTER("用户已经被注册过了", 7),
+	LOGIN_FAIL("账号或者密码错误", 8);
 
 	/**
 	 * 消息
@@ -55,15 +56,15 @@ public enum ResultStatus{
 	}
 
 	public static void showAllType() {
-		for (ResultStatus e : ResultStatus.values()) {  
+		for (ResultStatus e : ResultStatus.values()) {
 			System.out.println(e.getMessage() + "  " + e.getCode());
-		}  
+		}
 	}
-	
-	
-	/*public static void main(String[] args) {
-		//ResultStatus.DATA_NOT_FIND.setCode(500);
-		//System.out.println(ResultStatus.DATA_NOT_FIND.getCode());
-		showAllType();
-	}*/
+
+	/*
+	 * public static void main(String[] args) {
+	 * //ResultStatus.DATA_NOT_FIND.setCode(500);
+	 * //System.out.println(ResultStatus.DATA_NOT_FIND.getCode());
+	 * showAllType(); }
+	 */
 }

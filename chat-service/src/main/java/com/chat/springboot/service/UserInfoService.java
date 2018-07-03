@@ -17,4 +17,11 @@ public interface UserInfoService {
 	 */
 	public boolean register(UserInfo userInfo);
 
+	/**
+	 * 用户登陆
+	 * @param userInfo
+	 * @return
+	 */
+	public boolean login(UserInfo userInfo);
+
 }

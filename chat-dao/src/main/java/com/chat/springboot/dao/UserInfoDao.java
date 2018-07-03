@@ -13,10 +13,17 @@ import com.chat.springboot.domain.UserInfo;
 public interface UserInfoDao extends MongoRepository<UserInfo, String> {
 	
 	/**
-	 * 查看该用户是否被注册过
+	 * 查看该用户是否存在
 	 * @param userName
 	 * @return
 	 */
 	public int userNameIsRepeat(String userName);
+	
+	/**
+	 * 根据用户名查询用户信息
+	 * @param userName
+	 * @return
+	 */
+	public UserInfo findByUserName(String userName);
 
 }
