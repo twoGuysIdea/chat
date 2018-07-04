@@ -1,11 +1,10 @@
 package com.chat.springboot.controller.websocket;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.log;
-
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import javax.websocket.OnClose;
 import javax.websocket.OnError;
 import javax.websocket.OnMessage;
@@ -14,16 +13,17 @@ import javax.websocket.Session;
 import javax.websocket.server.PathParam;
 import javax.websocket.server.ServerEndpoint;
 
-import com.alibaba.fastjson.JSON;
-import com.chat.springboot.common.ChatCode;
-import com.chat.springboot.common.ResultMap;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import com.alibaba.fastjson.JSON;
+import com.chat.springboot.common.ChatCode;
+import com.chat.springboot.common.ResultMap;
+
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.Pipeline;
-import redis.clients.jedis.Response;
 import redis.clients.jedis.Transaction;
 
 @ServerEndpoint("/webSocket/{uuid}")

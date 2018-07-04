@@ -1,5 +1,6 @@
 package com.chat.springboot.service;
 
+import com.chat.springboot.domain.ResultStatus;
 import com.chat.springboot.domain.UserInfo;
 
 /**
@@ -15,13 +16,20 @@ public interface UserInfoService {
 	 * @param userInfo 用户
 	 * @return 
 	 */
-	public boolean register(UserInfo userInfo);
+	public ResultStatus register(UserInfo userInfo);
 
 	/**
 	 * 用户登陆
 	 * @param userInfo
 	 * @return
 	 */
-	public boolean login(UserInfo userInfo);
+	public ResultStatus login(UserInfo userInfo);
+
+	/**
+	 * 修改用户签名
+	 * @param userName
+	 * @param sign
+	 */
+	public ResultStatus updateSignByUser(String userName, String sign);
 
 }

@@ -4,6 +4,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
+import com.chat.springboot.interceptor.UserLoginInterceptor;
 import com.chat.springboot.interceptor.ValidatePageInterceptor;
 
 
@@ -29,6 +30,7 @@ public class WebMvcInterceptor extends WebMvcConfigurerAdapter {
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 		//registry.addInterceptor(new OneInterceptor()).addPathPatterns("/**");
+		registry.addInterceptor(new UserLoginInterceptor()).addPathPatterns("/**");//注册session校验
 		registry.addInterceptor(new ValidatePageInterceptor()).addPathPatterns("/**"); //注册分页
 		super.addInterceptors(registry);//注册该拦截器
 	}

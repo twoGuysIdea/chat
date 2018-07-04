@@ -5,6 +5,7 @@ import javax.annotation.Resource;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Repository;
 
 import com.chat.springboot.domain.UserInfo;
@@ -27,5 +28,14 @@ public class UserInfoDaoImpl {
 		Query query = new Query();
 		query.addCriteria(new Criteria().and("user_name").is(userName));
 		return (int) mongoTemplate.count(query, UserInfo.class);
+	}
+	
+	public int updateSignByUser(String userName, String sign) {
+		Query query = new Query();
+		query.addCriteria(new Criteria().and("user_name").is(userName));
+		Update update = new Update();
+		update.set("sign", sign);
+		return mongoTemplate.updateFirst(query, update, UserInfo.class).getN();
+		
 	}
 }

@@ -1,4 +1,6 @@
 package com.chat.springboot.domain;
+import java.util.concurrent.atomic.AtomicInteger;
+
 
 /**
  * <pre>
@@ -10,20 +12,30 @@ package com.chat.springboot.domain;
  * </pre>
  */
 public enum ResultStatus {
+	
 	/**
-	 * 枚举类型
+	 * 请求结果
 	 */
-	DATA_NOT_FIND("数据没有找到", 0), 
-	SUCCESS("返回结果成功", 1), 
-	LACK_PARAM("缺乏基本参数", 2),
-	DEFINE_ERROR("自定义错误", 3), 
-	UNKNOW("出现未知错误", -1), 
-	ONLY_SMALL("你可能还在上小学", 4), 
-	ONLY_MIDDLE("你可能还在上中学", 5), 
-	ONLY_BIG("你可能还在上大学", 6),
-	USER_IS_REGISTER("用户已经被注册过了", 7),
-	LOGIN_FAIL("账号或者密码错误", 8);
+	UNKNOW("出现未知错误", -1), //系统抛出异常
+	SUCCESS("请求成功", 0),  //请求成功
+	DEFINE_ERROR("自定义错误", -2), 
+	
+	/**基本参数校验**/
+	LACK_PARAM("缺乏基本参数",  InnerCode.getIncrmentI()),
+	
+	/**基本枚举类型 插入失败 更新失败 添加失败 未查询到匹配数据**/
+	DATA_NOT_FIND("数据没有找到",  InnerCode.getIncrmentI()), 
+	UPDATE_FAIL("未更新到匹配记录", InnerCode.getIncrmentI()),
+	INSERT_FAIL("插入数据失败",  InnerCode.getIncrmentI()),
+	DELETE_FAIL("删除数据失败",  InnerCode.getIncrmentI()),
 
+	/**用户模块枚举类型**/
+	USER_IS_REGISTER("用户已经被注册过了",  InnerCode.getIncrmentI()),
+	LOGIN_FAIL("账号或者密码错误",  InnerCode.getIncrmentI()),
+	USER_IS_NULL("请登录后再试",  InnerCode.getIncrmentI()),
+	USER_NOT_EXIST("账号不存在", InnerCode.getIncrmentI());
+	
+	
 	/**
 	 * 消息
 	 */
@@ -33,6 +45,20 @@ public enum ResultStatus {
 	 * 状态码
 	 */
 	private Integer code;
+	
+	
+	static class InnerCode { //内部定义状态码自增
+		public static AtomicInteger i = new AtomicInteger(1);
+		
+		/**
+		 * juc下的 atomic cas自增长 i 
+		 * @return
+		 */
+		public static int getIncrmentI() {
+			return i.getAndIncrement();
+		}
+	}
+	
 
 	ResultStatus(String message, Integer code) {
 		this.code = code;
@@ -61,10 +87,11 @@ public enum ResultStatus {
 		}
 	}
 
-	/*
-	 * public static void main(String[] args) {
-	 * //ResultStatus.DATA_NOT_FIND.setCode(500);
-	 * //System.out.println(ResultStatus.DATA_NOT_FIND.getCode());
-	 * showAllType(); }
-	 */
+	
+	/*  public static void main(String[] args) {
+		for (ResultStatus resultStatus : ResultStatus.values())  {
+			System.out.println(resultStatus.getCode() + " 消息 " + resultStatus.message );
+		}
+	  }*/
+	 
 }

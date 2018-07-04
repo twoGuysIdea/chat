@@ -1,21 +1,17 @@
 package com.chat.springboot.controller;
-
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
+import com.chat.springboot.common.StringUtils;
+import com.chat.springboot.common.ValidateSession;
 import com.chat.springboot.domain.Result;
 import com.chat.springboot.domain.ResultStatus;
 import com.chat.springboot.domain.UserInfo;
 import com.chat.springboot.service.UserInfoService;
-
-import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 
@@ -38,17 +34,12 @@ public class UserInfoController {
 	 * @return
 	 */
 	@RequestMapping(value = "/register", method = {RequestMethod.POST, RequestMethod.GET})
-	public Result<Object> register(@Valid UserInfo userInfo, BindingResult bindingResult) {
+	public Result<?> register(@Valid UserInfo userInfo, BindingResult bindingResult) {
 		Result<Object> result = new Result<Object>();
 		if (bindingResult.hasErrors()) {
-			return result.setCode(ResultStatus.LACK_PARAM).setMessage(bindingResult.getFieldError().getDefaultMessage());
+			return result.setCode(ResultStatus.LACK_PARAM).setData(bindingResult.getFieldError().getDefaultMessage());
 		}
-		if (userInfoService.register(userInfo)) {
-			result.setCode(ResultStatus.SUCCESS);
-		} else {
-			result.setCode(ResultStatus.USER_IS_REGISTER);
-		}
-		return result;
+		return result.setCode(userInfoService.register(userInfo));
 	}
 	
 	/**
@@ -58,20 +49,36 @@ public class UserInfoController {
 	 * @return
 	 */
 	@ApiOperation(value = "用户登陆")
-	@ApiImplicitParam(name = "userInfo", value = "用户信息", required = true, dataType = "Integer")
+	@ApiImplicitParam(name = "userInfo", value = "用户信息", required = true, dataType = "UserInfo")
 	@RequestMapping(value = "/login", method = {RequestMethod.POST, RequestMethod.GET})
-	public Result<Object> login(@Valid @RequestBody UserInfo userInfo, BindingResult bindingResult, HttpSession httpSession) {
+	public Result<?> login(@Valid UserInfo userInfo, BindingResult bindingResult, HttpSession httpSession) {
 		Result<Object> result = new Result<Object>();
 		if (bindingResult.hasErrors()) { //spring-boot自带的校验
-			return result.setCode(ResultStatus.LACK_PARAM).setMessage(bindingResult.getFieldError().getDefaultMessage());
+			return result.setCode(ResultStatus.LACK_PARAM).setData(bindingResult.getFieldError().getDefaultMessage());
 		}
-		if(userInfoService.login(userInfo)) { //登陆成功
+		ResultStatus resultStatus = userInfoService.login(userInfo);
+		if(resultStatus.getCode().intValue() == 0) { //登陆成功
 			httpSession.setAttribute("userName", userInfo.getUserName());//写入session
-			result.setCode(ResultStatus.SUCCESS);
-		} else {
-			result.setCode(ResultStatus.LOGIN_FAIL);
+			httpSession.setAttribute("userId", userInfo.getId());
 		}
-		return result;
+		return result.setCode(resultStatus);
+	}
+	
+	/**
+	 * 修改用户签名
+	 * @return
+	 */
+	@ApiOperation(value = "修改用户签名")
+	@ApiImplicitParam(name = "sign", value = "用户签名", required = true, dataType = "String", paramType = "query")
+	@RequestMapping(value = "/edit/sign", method = {RequestMethod.POST, RequestMethod.GET})
+	@ValidateSession
+	public Result<?> editSign(String sign, HttpSession httpSession) {
+		Result<Object> result = new Result<Object>();
+		if (StringUtils.isBlank(sign)) {
+			return result.setCode(ResultStatus.LACK_PARAM).setData("签名不能为空");
+		}
+		String userName = (String) httpSession.getAttribute("userName");
+		return result.setCode(userInfoService.updateSignByUser(userName, sign));
 	}
 
 }

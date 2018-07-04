@@ -24,6 +24,5 @@ public class UserInfoServiceTest extends SpringBootChatApplicationTests{
 		userInfo.setUserName("杨乙伟");
 		userInfo.setPassword("123456");
 		System.out.println(userInfoService.login(userInfo));
-		
 	}
 }
