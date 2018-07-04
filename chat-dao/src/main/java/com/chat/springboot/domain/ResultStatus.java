@@ -16,7 +16,7 @@ public enum ResultStatus {
 	/**
 	 * 请求结果
 	 */
-	UNKNOW("出现未知错误", -1), //系统抛出异常
+	UNKNOW_ERROR("出现未知错误", -1), //系统抛出异常
 	SUCCESS("请求成功", 0),  //请求成功
 	DEFINE_ERROR("自定义错误", -2), 
 	

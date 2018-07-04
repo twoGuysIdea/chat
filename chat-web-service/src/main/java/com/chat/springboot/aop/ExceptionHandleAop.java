@@ -1,13 +1,13 @@
 package com.chat.springboot.aop;
 
 import org.apache.log4j.Logger;
-import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.chat.springboot.domain.ProjectException;
 import com.chat.springboot.domain.Result;
 import com.chat.springboot.domain.ResultStatus;
-import com.chat.springboot.domain.ProjectException;
 
 /**
  * <pre>
@@ -37,6 +37,6 @@ public class ExceptionHandleAop {
 		}
 		logger.error("出现了系统未知的错误-----！！！！", e);
 		e.printStackTrace();// 未知错误，打印出来
-		return result.setCode(ResultStatus.UNKNOW);
+		return result.setCode(ResultStatus.UNKNOW_ERROR);
 	}
 }
