@@ -15,6 +15,9 @@ import com.chat.springboot.domain.UserFriend;
 import com.chat.springboot.domain.UserInfo;
 import com.chat.springboot.service.UserInfoService;
 
+import redis.clients.jedis.Jedis;
+import redis.clients.jedis.JedisPool;
+
 @Service
 public class UserInfoServiceBean implements UserInfoService {
 
@@ -22,6 +25,8 @@ public class UserInfoServiceBean implements UserInfoService {
 	private UserInfoDao userInfoDao;
 	@Resource
 	private UserFriendDao userFriendDao;
+	@Resource
+	private JedisPool jedisPool;
 
 	@Override
 	public ResultStatus register(UserInfo userInfo) {
@@ -64,6 +69,10 @@ public class UserInfoServiceBean implements UserInfoService {
 																														// 计算值
 		if (password.equals(searchUser.getPassword())) { // 加密后结果 与 预期一致
 			userInfo.setId(searchUser.getId());
+			//redis缓存中 存入用户在线状态()
+			Jedis jedis = jedisPool.getResource();
+			jedis.hset("online_user", searchUser.getUserName(), "yes");
+			jedis.disconnect();
 			return ResultStatus.SUCCESS;
 		}
 		return ResultStatus.LOGIN_FAIL;
