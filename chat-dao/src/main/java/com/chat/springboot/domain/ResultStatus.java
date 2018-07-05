@@ -34,7 +34,10 @@ public enum ResultStatus {
 	USER_IS_REGISTER("用户已经被注册过了",  InnerCode.getIncrmentI()),
 	LOGIN_FAIL("账号或者密码错误",  InnerCode.getIncrmentI()),
 	USER_IS_NULL("请登录后再试",  InnerCode.getIncrmentI()),
-	USER_NOT_EXIST("账号不存在", InnerCode.getIncrmentI());
+	USER_NOT_EXIST("账号不存在", InnerCode.getIncrmentI()),
+	
+	/**好友模块枚举类型**/
+	CAN_NOT_ADD_SELF("不能添加自身为好友", InnerCode.getIncrmentI());
 	
 	
 	/**

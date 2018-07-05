@@ -1,5 +1,7 @@
 package com.chat.springboot.service;
 
+import com.chat.springboot.domain.ResultStatus;
+
 /**
  * 用户好友业务逻辑层
  * @author yangyiwei
@@ -7,5 +9,13 @@ package com.chat.springboot.service;
  * @time 下午3:38:08
  */
 public interface UserFriendService {
+
+	/**
+	 * 添加好友
+	 * @param userId 用户id
+	 * @param friendId  好友id
+	 * @return
+	 */
+	public ResultStatus addFriend(String userId, String friendId);
 
 }
