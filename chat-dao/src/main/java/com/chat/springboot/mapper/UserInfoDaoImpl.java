@@ -30,9 +30,9 @@ public class UserInfoDaoImpl {
 		return (int) mongoTemplate.count(query, UserInfo.class);
 	}
 	
-	public int updateSignByUser(String userName, String sign) {
+	public int updateSignById(String userId, String sign) {
 		Query query = new Query();
-		query.addCriteria(new Criteria().and("user_name").is(userName));
+		query.addCriteria(new Criteria().and("_id").is(userId));
 		Update update = new Update();
 		update.set("sign", sign);
 		return mongoTemplate.updateFirst(query, update, UserInfo.class).getN();

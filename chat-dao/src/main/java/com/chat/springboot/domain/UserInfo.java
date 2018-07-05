@@ -2,9 +2,9 @@ package com.chat.springboot.domain;
 
 import java.util.Date;
 
-import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
+
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
@@ -44,6 +44,11 @@ public class UserInfo {
 	 * 用户生日
 	 */
 	private Date birthday; 
+	
+	/**
+	 * 用户签名
+	 */
+	private String sign;
 	
 	public UserInfo() {
 		
@@ -95,6 +100,16 @@ public class UserInfo {
 
 	public void setBirthday(Date birthday) {
 		this.birthday = birthday;
+	}
+	
+	
+
+	public String getSign() {
+		return sign;
+	}
+
+	public void setSign(String sign) {
+		this.sign = sign;
 	}
 
 	@Override

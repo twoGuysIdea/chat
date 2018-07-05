@@ -1,4 +1,7 @@
 package com.chat.springboot.controller;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -6,11 +9,14 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.chat.springboot.common.DateUtils;
 import com.chat.springboot.common.StringUtils;
 import com.chat.springboot.common.ValidateSession;
 import com.chat.springboot.domain.Result;
 import com.chat.springboot.domain.ResultStatus;
 import com.chat.springboot.domain.UserInfo;
+import com.chat.springboot.service.UserFriendService;
 import com.chat.springboot.service.UserInfoService;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
@@ -27,14 +33,21 @@ public class UserInfoController {
 	
 	@Autowired
 	private UserInfoService userInfoService;
+	@Autowired
+	private UserFriendService userFriendService;
 	
 	/**
 	 * 用户注册
 	 * @param userInfo
 	 * @return
+	 * @throws ParseException 
 	 */
 	@RequestMapping(value = "/register", method = {RequestMethod.POST, RequestMethod.GET})
-	public Result<?> register(@Valid UserInfo userInfo, BindingResult bindingResult) {
+	public Result<?> register(@Valid UserInfo userInfo, String birthdayStr, BindingResult bindingResult) throws ParseException {
+		if (birthdayStr != null) {
+			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+			userInfo.setBirthday(format.parse(birthdayStr)); //设置出生年月
+		}
 		Result<Object> result = new Result<Object>();
 		if (bindingResult.hasErrors()) {
 			return result.setCode(ResultStatus.LACK_PARAM).setData(bindingResult.getFieldError().getDefaultMessage());
@@ -77,8 +90,8 @@ public class UserInfoController {
 		if (StringUtils.isBlank(sign)) {
 			return result.setCode(ResultStatus.LACK_PARAM).setData("签名不能为空");
 		}
-		String userName = (String) httpSession.getAttribute("userName");
-		return result.setCode(userInfoService.updateSignByUser(userName, sign));
+		String userId = (String) httpSession.getAttribute("userId");
+		return result.setCode(userInfoService.updateSignById(userId, sign));
 	}
 
 }

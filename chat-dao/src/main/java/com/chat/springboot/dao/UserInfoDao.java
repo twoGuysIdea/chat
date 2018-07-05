@@ -32,6 +32,6 @@ public interface UserInfoDao extends MongoRepository<UserInfo, String> {
 	 * @param sign
 	 * @return
 	 */
-	public int updateSignByUser(String userName, String sign);
+	public int updateSignById(String userId, String sign);
 
 }

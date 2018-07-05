@@ -30,6 +30,6 @@ public interface UserInfoService {
 	 * @param userName
 	 * @param sign
 	 */
-	public ResultStatus updateSignByUser(String userName, String sign);
+	public ResultStatus updateSignById(String userId, String sign);
 
 }

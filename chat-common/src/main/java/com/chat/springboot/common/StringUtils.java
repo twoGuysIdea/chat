@@ -2,7 +2,6 @@ package com.chat.springboot.common;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -32,12 +31,10 @@ import org.apache.shiro.crypto.SecureRandomNumberGenerator;
 import org.apache.shiro.crypto.hash.SimpleHash;
 
 /**
- * <pre>
- * 功   能: 常量值判断工具类
- * 创建者: 陈林林(Vickey)
- * 日   期: 2014-7-24上午10:04:38
- * Q  Q: 308053847
- * </pre>
+ * 常量值判断工具
+ * @author yangyiwei
+ * @date 2018年7月5日
+ * @time 上午10:06:28
  */
 public class StringUtils {
 
@@ -191,13 +188,9 @@ public class StringUtils {
 	}
 
 	/**
-	 * <pre>
-	 * 说   明: 都不为空，才返回TRUE
-	 * &#64;param objects
-	 * &#64;return
-	 * 创建者: 陈    林(Vickey)
-	 * 日   期: 2014-6-25下午4:02:33
-	 * </pre>
+	 * 都不为空 返回true
+	 * @param objects
+	 * @return
 	 */
 	public static boolean isNotBlankAnd(Object... objects) {
 		if (isBlank(objects)) {
@@ -222,7 +215,7 @@ public class StringUtils {
 	 * 说   明: 只要其中一个为空，就返回TRUE
 	 * &#64;param objects
 	 * &#64;return
-	 * 创建者: 陈    林(Vickey)
+	 * 创建者: 杨乙伟
 	 * 日   期: 2014-6-25下午4:02:48
 	 * </pre>
 	 */
@@ -324,7 +317,7 @@ public class StringUtils {
 	 * 说   明:  产生唯一且不重复的随机数
 	 * &#64;param tag
 	 * &#64;return
-	 * 创建者: 陈    林(Vickey)
+	 * 创建者: 杨乙伟
 	 * 日   期: 2014-8-27下午1:50:30
 	 * </pre>
 	 */
@@ -364,7 +357,7 @@ public class StringUtils {
 	 * 说   明:  去掉斜杠
 	 * &#64;param method  STRINGUTIL
 	 * &#64;return
-	 * 创建者: 陈    林(Vickey)
+	 * 创建者: 杨乙伟
 	 * 日   期: 2014-10-29下午2:51:50
 	 * </pre>
 	 */
@@ -399,7 +392,7 @@ public class StringUtils {
 	 * &#64;return
 	 * &#64;throws Exception
 	 * 涉及版本: V1.0.0 
-	 * 创  建  者: 陈林林(Vickey)
+	 * 创  建  者: 杨乙伟
 	 * 日       期: 2015-7-7上午11:42:04
 	 * </pre>
 	 */
@@ -422,7 +415,7 @@ public class StringUtils {
 	 * &#64;return
 	 * &#64;throws Exception
 	 * 涉及版本: V1.0.0 
-	 * 创  建  者: 陈林林(Vickey)
+	 * 创  建  者: 杨乙伟
 	 * 日       期: 2015-7-7下午1:20:26
 	 * </pre>
 	 */
@@ -440,7 +433,7 @@ public class StringUtils {
 	 * &#64;return  STRINGUTIL
 	 * &#64;throws Exception
 	 * 涉及版本: V1.0.0 
-	 * 创  建  者: 陈林林(Vickey)
+	 * 创  建  者: 杨乙伟
 	 * 日       期: 2015-7-9上午10:50:52
 	 * </pre>
 	 */
@@ -503,7 +496,7 @@ public class StringUtils {
 	 * &#64;return
 	 * &#64;throws Exception
 	 * 涉及版本: V1.0.0 
-	 * 创  建  者: 陈林林(Vickey)
+	 * 创  建  者:杨乙伟
 	 * 日       期: 2015-3-29下午12:59:25
 	 * </pre>
 	 */
@@ -520,7 +513,7 @@ public class StringUtils {
 	/**
 	 * <pre>
 	 * 说   明: 去掉最后一个字符  STRINGUTILS
-	 * 创建者: 陈林林(Vickey)
+	 * 创建者: 杨乙伟
 	 * 修改者:
 	 * 日   期: 2014-5-26 下午03:31:11
 	 * 
@@ -544,7 +537,7 @@ public class StringUtils {
 	 * &#64;return
 	 * &#64;throws Exception
 	 * 涉及版本: 
-	 * 创  建  者: 陈林林(Vickey)
+	 * 创  建  者: 杨乙伟
 	 * 日       期: 2015-9-23上午11:55:39
 	 * </pre>
 	 */
@@ -835,118 +828,16 @@ public class StringUtils {
 		return false;
 	}
 
-	/**
-	 * 获取指定HTML标签的指定属性的值
-	 * 
-	 * @param source
-	 *            要匹配的源文本
-	 * @param element
-	 *            标签名称
-	 * @param attr
-	 *            标签的属性名称
-	 * @return 属性值列表
-	 */
-	public static List<String> getHtmlTagValue(String source, String element, String attr) {
-		List<String> result = new ArrayList<String>();
-		String reg = "<" + element + "[^<>]*?\\s" + attr + "=['\"]?(.*?)['\"]?\\s.*?>";
-		Matcher m = Pattern.compile(reg).matcher(source);
-		while (m.find()) {
-			String r = m.group(1);
-			result.add(r);
-		}
-		return result;
-	}
-
-	public static String phoneDesensitization(String phone) throws Exception {
-		StringBuffer sb = new StringBuffer();
-		sb.append(phone.substring(0, 3)).append("****").append(phone.substring(7));
-		return phone.substring(7);
-	}
-
-	/**
-	 * <pre>
-	 * 说       明: 三元表达式默认值
-	 * 涉及版本: V3.0.0  
-	 * 创  建  者: Vickey
-	 * 日       期: 2017年4月28日下午3:47:42
-	 * Q    Q: 308053847
-	 * </pre>
-	 * 
-	 * @return
-	 */
-	public static <T> String getTernaryValue(T value, String falseValue) {
-		return (String) (value != null ? value : falseValue);
-	}
-
-	/**
-	 * <pre>
-	 * 说       明: 获取请求中的参数值
-	 * 涉及版本: V3.0.0  
-	 * 创  建  者: Vickey
-	 * 日       期: 2017年4月28日下午4:45:47
-	 * Q    Q: 308053847
-	 * </pre>
-	 */
-	public static Map<String, String> getEnumeration(HttpServletRequest request) {
-		if (request == null) {
-			return null;
-		}
-		Map<String, String> map = new HashMap<String, String>();
-		Enumeration enumeration = request.getHeaderNames();
-		while (enumeration.hasMoreElements()) {
-			String key = (String) enumeration.nextElement();
-			map.put(key, request.getHeader(key));
-		}
-		return map;
-	}
-
-	/**
-	 * <pre>
-	 * 说       明: 
-	 * 涉及版本: V3.0.0  
-	 * 创  建  者: Vickey
-	 * 日       期: 2017年5月24日上午11:23:18
-	 * Q    Q: 308053847
-	 * </pre>
-	 */
-	public static String toString(String[] strArray) throws Exception {
-		if (strArray == null) {
-			return null;
-		}
-		StringBuffer sb = new StringBuffer();
-		for (Object string : strArray) {
-			sb.append(string + ",");
-		}
-		return resplaceStr(sb.toString());
-	}
-
-	/**
-	 * <pre>
-	 * 说       明: 数据传字条串
-	 * 涉及版本: V3.0.0  
-	 * 创  建  者: Vickey
-	 * 日       期: 2017年5月24日上午11:23:18
-	 * Q    Q: 308053847
-	 * </pre>
-	 */
-	public static String toString(List<String> strArray) throws Exception {
-		if (strArray == null) {
-			return null;
-		}
-		StringBuffer sb = new StringBuffer();
-		for (Object string : strArray) {
-			sb.append(string + ",");
-		}
-		return resplaceStr(sb.toString());
-	}
+	
+	
+	
 
 	/**
 	 * <pre>
 	 * 说       明: 解压到指定目录 
 	 * 涉及版本: V3.0.0  
-	 * 创  建  者: Vickey
+	 * 创  建  者: 杨乙伟
 	 * 日       期: 2017年6月8日下午1:24:21
-	 * Q    Q: 308053847
 	 * </pre>
 	 */
 	public static void unZipFiles(String zipPath, String descDir) throws Exception {
@@ -958,9 +849,8 @@ public class StringUtils {
 	 * <pre>
 	 * 说       明: 删除空目录
 	 * 涉及版本: V3.0.0  
-	 * 创  建  者: Vickey
+	 * 创  建  者:杨乙伟
 	 * 日       期: 2017年6月19日上午9:29:23
-	 * Q    Q: 308053847
 	 * </pre>
 	 */
 	private static void doDeleteEmptyDir(String dir) throws Exception {
@@ -976,9 +866,8 @@ public class StringUtils {
 	 * <pre>
 	 * 说       明: 递归删除目录下的所有文件及子目录下所有文件
 	 * 涉及版本: V3.0.0  
-	 * 创  建  者: Vickey
+	 * 创  建  者: 杨乙伟
 	 * 日       期: 2017年6月19日上午9:29:15
-	 * Q    Q: 308053847
 	 * </pre>
 	 */
 	public static boolean deleteDir(File dir) throws Exception {
@@ -1000,9 +889,8 @@ public class StringUtils {
 	 * <pre>
 	 * 说       明: 解压文件到指定目录
 	 * 涉及版本: V3.0.0  
-	 * 创  建  者: Vickey
+	 * 创  建  者: 杨乙伟
 	 * 日       期: 2017年6月8日下午1:24:30
-	 * Q    Q: 308053847
 	 * </pre>
 	 */
 	@SuppressWarnings("rawtypes")
@@ -1046,9 +934,8 @@ public class StringUtils {
 	 * <pre>
 	 * 说       明: 从REQUEST中获取JSON数据
 	 * 涉及版本: V3.0.0  
-	 * 创  建  者: Vickey
+	 * 创  建  者: 杨乙伟
 	 * 日       期: 2017年12月1日上午9:31:13
-	 * Q    Q: 308053847
 	 * </pre>
 	 */
 	public String getJsonDataForRequest(HttpServletRequest request) throws Exception {
@@ -1080,44 +967,7 @@ public class StringUtils {
 		return stringBuilder.toString();
 	}
 
-	/**
-	 * <pre>
-	 * 说       明: 控制线程(信号量)
-	 * https://www.cnblogs.com/whgw/archive/2011/09/29/2195555.html
-	 * 涉及版本: V3.0.0  
-	 * 创  建  者: Vickey
-	 * 日       期: 2018年1月3日下午5:26:28
-	 * Q    Q: 308053847
-	 * </pre>
-	 */
-	public void controlThread() {
-
-		ExecutorService exec = Executors.newCachedThreadPool();// 线程池
-		final Semaphore semp = new Semaphore(5);// 只能5个线程同时访问
-		for (int index = 0; index < 20; index++) {// 模拟20个客户端访问
-
-			final int NO = index;
-			Runnable run = new Runnable() {
-				public void run() {
-					try {
-
-						// 获取许可
-						semp.acquire();
-						System.out.println("Accessing: " + NO);
-						Thread.sleep((long) (Math.random() * 10000));
-						// 访问完后，释放
-						semp.release();
-						System.out.println("-----------------" + semp.availablePermits());
-					} catch (InterruptedException e) {
-						e.printStackTrace();
-					}
-				}
-			};
-			exec.execute(run);
-		}
-		// 退出线程池
-		exec.shutdown();
-	}
+	
 
 	
 }

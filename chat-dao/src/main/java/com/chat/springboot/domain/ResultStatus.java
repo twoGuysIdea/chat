@@ -28,6 +28,7 @@ public enum ResultStatus {
 	UPDATE_FAIL("未更新到匹配记录", InnerCode.getIncrmentI()),
 	INSERT_FAIL("插入数据失败",  InnerCode.getIncrmentI()),
 	DELETE_FAIL("删除数据失败",  InnerCode.getIncrmentI()),
+	TRANSACTION_FAIL("多表操作失败", InnerCode.getIncrmentI()),
 
 	/**用户模块枚举类型**/
 	USER_IS_REGISTER("用户已经被注册过了",  InnerCode.getIncrmentI()),

@@ -7,9 +7,11 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import com.chat.springboot.common.SignUtil;
+import com.chat.springboot.dao.UserFriendDao;
 import com.chat.springboot.dao.UserInfoDao;
 import com.chat.springboot.domain.ProjectException;
 import com.chat.springboot.domain.ResultStatus;
+import com.chat.springboot.domain.UserFriend;
 import com.chat.springboot.domain.UserInfo;
 import com.chat.springboot.service.UserInfoService;
 
@@ -18,6 +20,8 @@ public class UserInfoServiceBean implements UserInfoService {
 
 	@Resource
 	private UserInfoDao userInfoDao;
+	@Resource
+	private UserFriendDao userFriendDao;
 
 	@Override
 	public ResultStatus register(UserInfo userInfo) {
@@ -29,9 +33,23 @@ public class UserInfoServiceBean implements UserInfoService {
 		String[] result = SignUtil.AddSalt(userInfo.getUserName(), userInfo.getPassword(), null);
 		userInfo.setSalt(result[1]);
 		userInfo.setPassword(result[0]);
-		userInfo.setId(UUID.randomUUID().toString());
-		System.out.println("密码盐" + userInfo.getSalt() + "密码：" + userInfo.getPassword());
-		userInfoDao.insert(userInfo);
+		String id = UUID.randomUUID().toString();
+		userInfo.setId(id);
+		// System.out.println("密码盐" + userInfo.getSalt() + "密码：" +
+		// userInfo.getPassword());
+
+		/* 由于mongodb自身不带事务。所以多表 需要手动实现，实际操作中应当尽量避免 */
+		userInfoDao.insert(userInfo); // 写入用户信息表
+		UserFriend userFriend = new UserFriend();
+		userFriend.setId(UUID.randomUUID().toString());
+		userFriend.setUserName(userInfo.getUserName());
+		userFriend.setUserId(id);
+		try {
+			userFriendDao.insert(userFriend);
+		} catch (Exception e) {
+			userInfoDao.delete(id);// 如果插入好友表失败，则删除之前信息表插入结果
+			throw new ProjectException(ResultStatus.TRANSACTION_FAIL);
+		}
 		return ResultStatus.SUCCESS;
 
 	}
@@ -39,12 +57,12 @@ public class UserInfoServiceBean implements UserInfoService {
 	@Override
 	public ResultStatus login(UserInfo userInfo) {
 		UserInfo searchUser = userInfoDao.findByUserName(userInfo.getUserName());
-		if (searchUser == null) { //未找到该用户
+		if (searchUser == null) { // 未找到该用户
 			return ResultStatus.USER_NOT_EXIST;
 		}
-		String password = SignUtil.AddSalt(userInfo.getUserName(),
-				userInfo.getPassword(), searchUser.getSalt())[0]; //根据用过户传输的密码以及查询出来的salt 计算值
-		if (password.equals(searchUser.getPassword())) { //加密后结果 与 预期一致
+		String password = SignUtil.AddSalt(userInfo.getUserName(), userInfo.getPassword(), searchUser.getSalt())[0]; // 根据用过户传输的密码以及查询出来的salt
+																														// 计算值
+		if (password.equals(searchUser.getPassword())) { // 加密后结果 与 预期一致
 			userInfo.setId(searchUser.getId());
 			return ResultStatus.SUCCESS;
 		}
@@ -52,8 +70,8 @@ public class UserInfoServiceBean implements UserInfoService {
 	}
 
 	@Override
-	public ResultStatus updateSignByUser(String userName, String sign) {
-		int num = userInfoDao.updateSignByUser(userName, sign);
+	public ResultStatus updateSignById(String userId, String sign) {
+		int num = userInfoDao.updateSignById(userId, sign);
 		if (num < 1) {
 			return ResultStatus.UPDATE_FAIL;
 		}
