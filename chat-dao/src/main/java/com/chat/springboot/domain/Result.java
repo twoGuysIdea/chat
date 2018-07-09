@@ -10,6 +10,9 @@ package com.chat.springboot.domain;
  * </pre>
  */
 public class Result<T> {
+
+	private boolean isSuccess;
+
 	/**
 	 * 状态码
 	 */
@@ -30,15 +33,25 @@ public class Result<T> {
 	 * @param resultStatus
 	 */
 	public Result(ResultStatus resultStatus) {
+		this.isSuccess = judge(resultStatus.getCode());
 		this.code = resultStatus.getCode();
 		this.message = resultStatus.getMessage();
 	}
-	
+
+	private boolean judge(Integer code) {
+		boolean isSuccess = true;
+		if (code != 0){
+			isSuccess = false;
+		}
+		return isSuccess;
+	}
+
 	/**
 	 * 设置状态码的构造函数，返回对象
 	 * @param resultStatus
 	 */
 	public Result(ResultStatus resultStatus, T data) {
+		this.isSuccess = judge(resultStatus.getCode());
 		this.code = resultStatus.getCode();
 		this.message = resultStatus.getMessage();
 		this.data = data;
@@ -46,6 +59,10 @@ public class Result<T> {
 
 	public Result() {
 
+	}
+
+	public boolean getIsSuccess() {
+		return isSuccess;
 	}
 
 	public Integer getCode() {
@@ -72,6 +89,12 @@ public class Result<T> {
 
 	public Result<T> setCode(ResultStatus resultStatus) {
 		this.code = resultStatus.getCode();
+		this.message = resultStatus.getMessage();
+		return this;
+	}
+
+	public Result<T> returnView(ResultStatus resultStatus) {
+		this.isSuccess = judge(resultStatus.getCode());
 		this.message = resultStatus.getMessage();
 		return this;
 	}

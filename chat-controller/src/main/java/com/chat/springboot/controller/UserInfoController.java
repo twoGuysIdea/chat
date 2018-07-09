@@ -52,7 +52,7 @@ public class UserInfoController {
 		if (bindingResult.hasErrors()) {
 			return result.setCode(ResultStatus.LACK_PARAM).setData(bindingResult.getFieldError().getDefaultMessage());
 		}
-		return result.setCode(userInfoService.register(userInfo));
+		return result.returnView(userInfoService.register(userInfo));
 	}
 	
 	/**
@@ -74,7 +74,7 @@ public class UserInfoController {
 			httpSession.setAttribute("userName", userInfo.getUserName());//写入session
 			httpSession.setAttribute("userId", userInfo.getId());
 		}
-		return result.setCode(resultStatus);
+		return result.returnView(resultStatus);
 	}
 	
 	/**
@@ -91,7 +91,7 @@ public class UserInfoController {
 			return result.setCode(ResultStatus.LACK_PARAM).setData("签名不能为空");
 		}
 		String userId = (String) httpSession.getAttribute("userId");
-		return result.setCode(userInfoService.updateSignById(userId, sign));
+		return result.returnView(userInfoService.updateSignById(userId, sign));
 	}
 
 }
