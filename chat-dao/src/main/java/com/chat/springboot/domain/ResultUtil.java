@@ -10,8 +10,8 @@ public class ResultUtil {
 	
 	/**
 	 * 设置结果集，带返回对象
-	 * @param resultStatus
-	 * @param data
+	 * @param resultStatus 状态码
+	 * @param data 对象
 	 * @return
 	 */
 	public static <T> Result<T> setResult(ResultStatus resultStatus, T data) {
@@ -20,8 +20,7 @@ public class ResultUtil {
 	
 	/**
 	 * 设置结果集，不带返回对象
-	 * @param resultStatus
-	 * @param data
+	 * @param resultStatus 状态码
 	 * @return
 	 */
 	public static Result<?> setResult(ResultStatus resultStatus) {
@@ -33,7 +32,7 @@ public class ResultUtil {
 	/**
 	 * 设置出错结果集合
 	 * @param resultStatus 状态码
-	 * @param errorDetail 对出错情况的补充
+	 * @param errorDetail 对出错情况的补充补充
 	 * @return
 	 */
 	public static Result<String> setResult(ResultStatus resultStatus, String errorDetail) {

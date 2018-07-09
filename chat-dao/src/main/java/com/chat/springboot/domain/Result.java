@@ -24,6 +24,7 @@ public class Result<T> {
 	 * 具体内容
 	 */
 	private T data;
+	
 
 	/**
 	 * 设置状态码的构造函数，无返回对象
