@@ -19,4 +19,19 @@ public interface UserFriendDao extends MongoRepository<UserFriend, String> {
 	 */
 	public int addFriend(String userId, UserInfo userInfo);
 
+	/**
+	 * 根据用户id查询用户好友列表
+	 * @param userId
+	 * @return
+	 */
+	public UserFriend findByUserId(String userId);
+
+	/**
+	 * 判断是否重复添加好友
+	 * @param userId
+	 * @param friendId
+	 * @return
+	 */
+	public int isRepeatAddFriend(String userId, String friendId);
+
 }

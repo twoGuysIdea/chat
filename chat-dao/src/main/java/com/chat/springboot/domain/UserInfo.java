@@ -10,48 +10,53 @@ import org.springframework.data.mongodb.core.mapping.Field;
 
 @Document(collection = "user_info")
 public class UserInfo {
-	
+
 	/**
 	 * 用户id标志
 	 */
 	@Id
 	private String id;
-	
+
 	/**
 	 * 用户名
 	 */
 	@NotNull(message = "用户名不能为空")
 	@Field("user_name")
 	private String userName;
-	
+
 	/**
 	 * 用户密码
 	 */
 	@NotNull(message = "密码不能为空")
 	private String password;
-	
+
 	/**
 	 * 密码盐 加密使用
 	 */
 	private String salt;
-	
+
 	/**
-	 * 用户性别 
+	 * 用户性别
 	 */
 	private Integer sex;
-	
+
 	/**
 	 * 用户生日
 	 */
-	private Date birthday; 
-	
+	private Date birthday;
+
 	/**
 	 * 用户签名
 	 */
 	private String sign;
-	
+
+	/**
+	 * 用户状态是否在线
+	 */
+	private boolean isOnline;
+
 	public UserInfo() {
-		
+
 	}
 
 	public String getId() {
@@ -101,8 +106,6 @@ public class UserInfo {
 	public void setBirthday(Date birthday) {
 		this.birthday = birthday;
 	}
-	
-	
 
 	public String getSign() {
 		return sign;
@@ -112,13 +115,18 @@ public class UserInfo {
 		this.sign = sign;
 	}
 
+	public boolean isOnline() {
+		return isOnline;
+	}
+
+	public void setOnline(boolean isOnline) {
+		this.isOnline = isOnline;
+	}
+
 	@Override
 	public String toString() {
 		return "UserInfo [id=" + id + ", userName=" + userName + ", password=" + password + ", salt=" + salt + ", sex="
-				+ sex + ", birthday=" + birthday + "]";
+				+ sex + ", birthday=" + birthday + ", sign=" + sign + ", isOnline=" + isOnline + "]";
 	}
-	
-	
-	
-	
+
 }

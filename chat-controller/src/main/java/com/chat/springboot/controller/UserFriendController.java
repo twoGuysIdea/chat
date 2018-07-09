@@ -1,18 +1,19 @@
 package com.chat.springboot.controller;
 
-import javax.servlet.http.HttpSession;
+import java.util.List;
 
+import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.chat.springboot.common.StringUtils;
 import com.chat.springboot.common.ValidateSession;
 import com.chat.springboot.domain.Result;
 import com.chat.springboot.domain.ResultStatus;
+import com.chat.springboot.domain.ResultUtil;
+import com.chat.springboot.domain.UserInfo;
 import com.chat.springboot.service.UserFriendService;
-
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 
@@ -35,12 +36,21 @@ public class UserFriendController {
 	@RequestMapping(value = "/add", method = { RequestMethod.POST, RequestMethod.GET })
 	@ValidateSession
 	public Result<?> addFirend(String friendId, HttpSession session) {
-		Result<?> result = new Result<>();
 		if (StringUtils.isBlank(friendId)) {
-			return result.setCode(ResultStatus.LACK_PARAM);
+			return new Result<>(ResultStatus.LACK_PARAM);
 		}
 		String userId = (String) session.getAttribute("userId");
-		return result.setCode(userFriendService.addFriend(userId, friendId));
+		return ResultUtil.setResult(userFriendService.addFriend(userId, friendId));
+	}
+	
+	@ApiOperation(value = "查询用户好友列表")
+	@ApiImplicitParam(name = "session", value = "session", required = false, dataType = "String", paramType = "query")
+	@RequestMapping(value = "/list", method = { RequestMethod.POST, RequestMethod.GET })
+	@ValidateSession
+	public Result<List<UserInfo>> getFriendListByUid(HttpSession session) {
+		String userId = (String) session.getAttribute("userId");
+		List<UserInfo> userInfos = userFriendService. getFriendListByUid(userId);
+		return ResultUtil.setResult(ResultStatus.SUCCESS, userInfos);
 	}
 
 }

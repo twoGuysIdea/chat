@@ -31,4 +31,17 @@ public class UserFriendDaoImpl {
 		update.push("friends", userInfo);
 		return mongoTemplate.updateFirst(query, update, UserFriend.class).getN();
 	}
+	
+	/**
+	 * 判断是否重复添加好友
+	 * @param userId
+	 * @param friendId
+	 * @return
+	 */
+	public int isRepeatAddFriend(String userId, String friendId) {
+		Query query = new Query();
+		query.addCriteria(new Criteria().and("user_id").is(userId).and("friends._id").is(friendId));
+		return (int) mongoTemplate.count(query, UserFriend.class);
+	}
+
 }

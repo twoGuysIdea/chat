@@ -1,6 +1,9 @@
 package com.chat.springboot.service;
 
+import java.util.List;
+
 import com.chat.springboot.domain.ResultStatus;
+import com.chat.springboot.domain.UserInfo;
 
 /**
  * 用户好友业务逻辑层
@@ -17,5 +20,12 @@ public interface UserFriendService {
 	 * @return
 	 */
 	public ResultStatus addFriend(String userId, String friendId);
+
+	/**
+	 * 根据用户id查询好友列表
+	 * @param userId
+	 * @return
+	 */
+	public List<UserInfo> getFriendListByUid(String userId);
 
 }

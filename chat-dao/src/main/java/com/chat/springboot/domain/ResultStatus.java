@@ -37,8 +37,8 @@ public enum ResultStatus {
 	USER_NOT_EXIST("账号不存在", InnerCode.getIncrmentI()),
 	
 	/**好友模块枚举类型**/
-	CAN_NOT_ADD_SELF("不能添加自身为好友", InnerCode.getIncrmentI());
-	
+	CAN_NOT_ADD_SELF("不能添加自身为好友", InnerCode.getIncrmentI()),
+	CAN_NOT_ADD_REPEAT_FRIEND("不可重复添加好友", InnerCode.getIncrmentI());
 	
 	/**
 	 * 消息
