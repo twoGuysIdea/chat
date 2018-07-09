@@ -25,7 +25,7 @@ public class UserInfo {
 	private String userName;
 	
 	/**
-	 * 用过户密码
+	 * 用户密码
 	 */
 	@NotNull(message = "密码不能为空")
 	private String password;
