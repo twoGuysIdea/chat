@@ -25,6 +25,25 @@ public class Result<T> {
 	 */
 	private T data;
 
+	/**
+	 * 设置状态码的构造函数，无返回对象
+	 * @param resultStatus
+	 */
+	public Result(ResultStatus resultStatus) {
+		this.code = resultStatus.getCode();
+		this.message = resultStatus.getMessage();
+	}
+	
+	/**
+	 * 设置状态码的构造函数，返回对象
+	 * @param resultStatus
+	 */
+	public Result(ResultStatus resultStatus, T data) {
+		this.code = resultStatus.getCode();
+		this.message = resultStatus.getMessage();
+		this.data = data;
+	}
+
 	public Result() {
 
 	}
@@ -61,5 +80,7 @@ public class Result<T> {
 	public String toString() {
 		return "Result [code=" + code + ", message=" + message + ", data=" + data + "]";
 	}
+	
+
 
 }

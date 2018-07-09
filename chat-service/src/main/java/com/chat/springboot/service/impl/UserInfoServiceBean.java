@@ -71,7 +71,7 @@ public class UserInfoServiceBean implements UserInfoService {
 			userInfo.setId(searchUser.getId());
 			//redis缓存中 存入用户在线状态()
 			Jedis jedis = jedisPool.getResource();
-			jedis.hset("online_user", searchUser.getUserName(), "yes");
+			jedis.hset("login_online_user", searchUser.getUserName(), "yes");
 			jedis.disconnect();
 			return ResultStatus.SUCCESS;
 		}
