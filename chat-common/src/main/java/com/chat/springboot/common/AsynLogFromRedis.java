@@ -1,4 +1,5 @@
 package com.chat.springboot.common;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;

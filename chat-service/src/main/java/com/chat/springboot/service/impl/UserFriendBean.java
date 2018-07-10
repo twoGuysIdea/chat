@@ -29,12 +29,12 @@ public class UserFriendBean implements UserFriendService {
 
 	@Override
 	public ResultStatus addFriend(String userId, String friendId) {
+		if (userId.equals(friendId)) { //不可添加自身
+			return ResultStatus.CAN_NOT_ADD_SELF;
+		}
 		UserInfo userInfo = userInfoDao.findOne(friendId);
 		if (userInfo == null) { //好友不存在
 			return ResultStatus.DATA_NOT_FIND;
-		}
-		if (userId.equals(friendId)) { //不可添加自身
-			return ResultStatus.CAN_NOT_ADD_SELF;
 		}
 		if (userFriendDao.isRepeatAddFriend(userId, friendId) > 0) { //不可重复添加好友
 			return ResultStatus.CAN_NOT_ADD_REPEAT_FRIEND;
