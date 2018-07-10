@@ -8,6 +8,9 @@ import javax.validation.constraints.NotNull;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+
 @Document(collection = "user_info")
 public class UserInfo {
 
@@ -15,6 +18,7 @@ public class UserInfo {
 	 * 用户id标志
 	 */
 	@Id
+	@JsonInclude(Include.NON_NULL)
 	private String id;
 
 	/**
@@ -22,37 +26,44 @@ public class UserInfo {
 	 */
 	@NotNull(message = "用户名不能为空")
 	@Field("user_name")
+	@JsonInclude(Include.NON_NULL)
 	private String userName;
 
 	/**
 	 * 用户密码
 	 */
 	@NotNull(message = "密码不能为空")
+	@JsonInclude(Include.NON_NULL)
 	private String password;
 
 	/**
 	 * 密码盐 加密使用
 	 */
+	@JsonInclude(Include.NON_NULL)
 	private String salt;
 
 	/**
 	 * 用户性别
 	 */
+	@JsonInclude(Include.NON_NULL)
 	private Integer sex;
 
 	/**
 	 * 用户生日
 	 */
+	@JsonInclude(Include.NON_NULL)
 	private Date birthday;
 
 	/**
 	 * 用户签名
 	 */
+	@JsonInclude(Include.NON_NULL)
 	private String sign;
 
 	/**
 	 * 用户状态是否在线
 	 */
+	@JsonInclude(Include.NON_NULL)
 	private boolean isOnline;
 
 	public UserInfo() {
