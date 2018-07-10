@@ -49,7 +49,7 @@ public class UserFriendController {
 	@ValidateSession
 	public Result<List<UserInfo>> getFriendListByUid(HttpSession session) {
 		String userId = (String) session.getAttribute("userId");
-		List<UserInfo> userInfos = userFriendService. getFriendListByUid(userId);
+		List<UserInfo> userInfos = userFriendService.getFriendListByUid(userId);
 		return ResultUtil.setResult(ResultStatus.SUCCESS, userInfos);
 	}
 
