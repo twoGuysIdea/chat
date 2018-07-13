@@ -1,14 +1,10 @@
 package com.chat.springboot.mapper;
-
+import javax.annotation.Resource;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
-
-import javax.annotation.Resource;
-
 import org.springframework.stereotype.Repository;
-
 import com.chat.springboot.domain.UserFriend;
 import com.chat.springboot.domain.UserInfo;
 
