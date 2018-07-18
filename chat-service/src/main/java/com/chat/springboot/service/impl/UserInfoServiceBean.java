@@ -38,8 +38,7 @@ public class UserInfoServiceBean implements UserInfoService {
 		String[] result = SignUtil.AddSalt(userInfo.getUserName(), userInfo.getPassword(), null);
 		userInfo.setSalt(result[1]);
 		userInfo.setPassword(result[0]);
-		String id = UUID.randomUUID().toString();
-		userInfo.setId(id);
+
 		// System.out.println("密码盐" + userInfo.getSalt() + "密码：" +
 		// userInfo.getPassword());
 
@@ -48,11 +47,11 @@ public class UserInfoServiceBean implements UserInfoService {
 		UserFriend userFriend = new UserFriend();
 		userFriend.setId(UUID.randomUUID().toString());
 		userFriend.setUserName(userInfo.getUserName());
-		userFriend.setUserId(id);
+		userFriend.setUserId(userInfo.getId());
 		try {
 			userFriendDao.insert(userFriend);
 		} catch (Exception e) {
-			userInfoDao.delete(id);// 如果插入好友表失败，则删除之前信息表插入结果
+			userInfoDao.delete(userInfo.getId());// 如果插入好友表失败，则删除之前信息表插入结果
 			throw new ProjectException(ResultStatus.TRANSACTION_FAIL);
 		}
 		return ResultStatus.SUCCESS;
@@ -85,6 +84,12 @@ public class UserInfoServiceBean implements UserInfoService {
 			return ResultStatus.UPDATE_FAIL;
 		}
 		return ResultStatus.SUCCESS;
+	}
+
+	@Override
+	public UserInfo loadUserById(String userId) {
+		System.err.println("我在service层。。。用户id为"+userId);
+		return userInfoDao.findById(userId);
 	}
 
 }

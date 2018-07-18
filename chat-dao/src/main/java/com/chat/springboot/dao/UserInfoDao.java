@@ -34,4 +34,10 @@ public interface UserInfoDao extends MongoRepository<UserInfo, String> {
 	 */
 	public int updateSignById(String userId, String sign);
 
+	/**
+	 * 获取单个用户信息
+	 * @param userId
+	 * @return
+	 */
+    UserInfo findById(String userId);
 }

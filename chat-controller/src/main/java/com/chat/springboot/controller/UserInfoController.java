@@ -1,12 +1,14 @@
 package com.chat.springboot.controller;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -49,7 +51,7 @@ public class UserInfoController {
 		}
 		Result<Object> result = new Result<Object>();
 		if (bindingResult.hasErrors()) {
-			return result.setCode(ResultStatus.LACK_PARAM).setData(bindingResult.getFieldError().getDefaultMessage());
+			return result.returnView(ResultStatus.LACK_PARAM,bindingResult.getFieldError().getDefaultMessage());
 		}
 		return result.returnView(userInfoService.register(userInfo));
 	}
@@ -73,7 +75,7 @@ public class UserInfoController {
 			httpSession.setAttribute("userName", userInfo.getUserName());//写入session
 			httpSession.setAttribute("userId", userInfo.getId());
 		}
-		return result.returnView(resultStatus);
+		return result.returnView(resultStatus,userInfo.getId());
 	}
 	
 	/**
@@ -91,6 +93,22 @@ public class UserInfoController {
 		}
 		String userId = (String) httpSession.getAttribute("userId");
 		return result.returnView(userInfoService.updateSignById(userId, sign));
+	}
+
+	/**
+	 * 获取单个用户信息
+	 * @return
+	 */
+	@ApiOperation(value = "根据用户id获取获取信息")
+	@ApiImplicitParam(name = "userId", value = "用户id", required = true, dataType = "String", paramType = "query")
+	@RequestMapping(value = "/load/one/{userId}", method = {RequestMethod.POST, RequestMethod.GET})
+	public Result<?> loadOne(@PathVariable("userId") String userId, HttpSession httpSession) {
+		Result<Object> result = new Result<Object>();
+		if (StringUtils.isBlank(userId)) {
+			return result.setCode(ResultStatus.LACK_PARAM).setData("用户id不能为空");
+		}
+		System.err.println("我在控制层。。。用户id为"+userId);
+		return result.returnView(ResultStatus.SUCCESS,userInfoService.loadUserById(userId));
 	}
 
 }

@@ -113,6 +113,13 @@ public class Result<T> {
 		return this;
 	}
 
+	public Result<T> returnView(ResultStatus resultStatus,T data) {
+		this.isSuccess = codeConvertIsSuccess(resultStatus.getCode());
+		this.message = resultStatus.getMessage();
+		this.data = data;
+		return this;
+	}
+
 	@Override
 	public String toString() {
 		return "Result [isSuccess=" + isSuccess + ", code=" + code + ", message=" + message + ", data=" + data + "]";

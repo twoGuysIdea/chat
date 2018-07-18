@@ -39,7 +39,9 @@ public enum ResultStatus {
 	/**好友模块枚举类型**/
 	CAN_NOT_ADD_SELF("不能添加自身为好友", InnerCode.getIncrmentI()),
 	CAN_NOT_ADD_REPEAT_FRIEND("不可重复添加好友", InnerCode.getIncrmentI());
-	
+
+	private Object data;
+
 	/**
 	 * 消息
 	 */

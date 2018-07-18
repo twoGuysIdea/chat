@@ -32,4 +32,10 @@ public interface UserInfoService {
 	 */
 	public ResultStatus updateSignById(String userId, String sign);
 
+	/**
+	 * 根据用户id查询用户完成信息
+	 * @param userId
+	 * @return
+	 */
+    UserInfo loadUserById(String userId);
 }
