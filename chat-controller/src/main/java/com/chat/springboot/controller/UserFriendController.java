@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,6 +26,7 @@ import io.swagger.annotations.ApiOperation;
  * @time 下午3:36:04
  */
 @RestController
+@CrossOrigin
 @RequestMapping("/user/friend")
 public class UserFriendController {
 
@@ -46,7 +48,7 @@ public class UserFriendController {
 	@ApiOperation(value = "查询用户好友列表")
 	@ApiImplicitParam(name = "session", value = "session", required = false, dataType = "String", paramType = "query")
 	@RequestMapping(value = "/list", method = { RequestMethod.POST, RequestMethod.GET })
-	@ValidateSession
+    @ValidateSession
 	public Result<List<UserInfo>> getFriendListByUid(HttpSession session) {
 		String userId = (String) session.getAttribute("userId");
 		List<UserInfo> userInfos = userFriendService.getFriendListByUid(userId);

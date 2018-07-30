@@ -1,17 +1,13 @@
 package com.chat.springboot.controller;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.chat.springboot.common.StringUtils;
 import com.chat.springboot.common.ValidateSession;
@@ -30,6 +26,7 @@ import io.swagger.annotations.ApiOperation;
  * @time 下午4:36:35
  */
 @RestController
+@CrossOrigin
 @RequestMapping("/user/info")
 public class UserInfoController {
 	
@@ -66,7 +63,7 @@ public class UserInfoController {
 	@ApiImplicitParam(name = "userInfo", value = "用户信息", required = true, dataType = "UserInfo")
 	@RequestMapping(value = "/login", method = {RequestMethod.POST, RequestMethod.GET})
 	public Result<?> login(@Valid UserInfo userInfo, BindingResult bindingResult, HttpSession httpSession) {
-		Result<Object> result = new Result<Object>();
+	    Result<Object> result = new Result<Object>();
 		if (bindingResult.hasErrors()) { //spring-boot自带的校验
 			return result.setCode(ResultStatus.LACK_PARAM).setData(bindingResult.getFieldError().getDefaultMessage());
 		}
@@ -75,7 +72,7 @@ public class UserInfoController {
 			httpSession.setAttribute("userName", userInfo.getUserName());//写入session
 			httpSession.setAttribute("userId", userInfo.getId());
 		}
-		return result.returnView(resultStatus,userInfo.getId());
+		return result.returnView(resultStatus);
 	}
 	
 	/**
@@ -100,14 +97,12 @@ public class UserInfoController {
 	 * @return
 	 */
 	@ApiOperation(value = "根据用户id获取获取信息")
-	@ApiImplicitParam(name = "userId", value = "用户id", required = true, dataType = "String", paramType = "query")
-	@RequestMapping(value = "/load/one/{userId}", method = {RequestMethod.POST, RequestMethod.GET})
-	public Result<?> loadOne(@PathVariable("userId") String userId, HttpSession httpSession) {
+	@ApiImplicitParam(name = "session", value = "session", required = true, dataType = "String", paramType = "query")
+	@RequestMapping(value = "/load/one", method = {RequestMethod.POST, RequestMethod.GET})
+    @ValidateSession
+	public Result<?> loadOne(HttpSession httpSession) {
 		Result<Object> result = new Result<Object>();
-		if (StringUtils.isBlank(userId)) {
-			return result.setCode(ResultStatus.LACK_PARAM).setData("用户id不能为空");
-		}
-		System.err.println("我在控制层。。。用户id为"+userId);
+        String userId = (String) httpSession.getAttribute("userId");
 		return result.returnView(ResultStatus.SUCCESS,userInfoService.loadUserById(userId));
 	}
 

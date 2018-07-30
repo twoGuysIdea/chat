@@ -88,7 +88,6 @@ public class UserInfoServiceBean implements UserInfoService {
 
 	@Override
 	public UserInfo loadUserById(String userId) {
-		System.err.println("我在service层。。。用户id为"+userId);
 		return userInfoDao.findById(userId);
 	}
 

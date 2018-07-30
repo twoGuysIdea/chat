@@ -1,6 +1,5 @@
 package com.chat.springboot.service.impl;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -54,21 +53,23 @@ public class UserFriendBean implements UserFriendService {
 		UserFriend userFriend = userFriendDao.findByUserId(userId);
 		//获取该用户所有好友
 		List<UserInfo> friends = userFriend.getFriends();
-		Jedis jedis = jedisPool.getResource();
 		String[] friendsIds = new String[friends.size()];
 		for (int i = 0; i < friends.size(); i++) { //遍 历好友列表 获取所有好友id
 			friendsIds[i] = friends.get(i).getId();
 		}
 		//此处去redis查询 所有好友在线状态 并设置
-		List<String> friendStatus = jedis.hmget("login_online_user", friendsIds);
-		for (int i = 0; i < friendStatus.size(); i++) {
-			if (friendStatus.get(i) != null) { //说明该好友登陆过，状态在线
-				friends.get(i).setOnline(true);
-			} else {
-				friends.get(i).setOnline(false);
-			}
-		}
-		jedis.disconnect();
+        if (friendsIds.length > 0){
+            Jedis jedis = jedisPool.getResource();
+            List<String> friendStatus = jedis.hmget("login_online_user", friendsIds);
+            for (int i = 0; i < friendStatus.size(); i++) {
+                if (friendStatus.get(i) != null) { //说明该好友登陆过，状态在线
+                    friends.get(i).setOnline(true);
+                } else {
+                    friends.get(i).setOnline(false);
+                }
+            }
+            jedis.disconnect();
+        }
 		return friends;
 	}
 

@@ -40,7 +40,6 @@ public class UserInfoDaoImpl {
 	}
 
 	public UserInfo findById(String userId){
-		System.err.println("我在dao层。。。用户id为"+userId);
 		UserInfo userInfo = mongoTemplate.findById(userId,UserInfo.class);
 		System.out.println(userInfo);
 		return userInfo;
