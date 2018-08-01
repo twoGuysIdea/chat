@@ -2,6 +2,8 @@ package com.chat.springboot.service;
 
 import java.util.List;
 
+import org.springframework.cache.annotation.Cacheable;
+
 import com.chat.springboot.domain.ResultStatus;
 import com.chat.springboot.domain.UserInfo;
 
@@ -26,6 +28,7 @@ public interface UserFriendService {
 	 * @param userId
 	 * @return
 	 */
+	@Cacheable(value = "userFriend", key = "'userFriend_'+#p0")
 	public List<UserInfo> getFriendListByUid(String userId);
 
 }

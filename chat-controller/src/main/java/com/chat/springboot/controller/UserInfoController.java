@@ -99,7 +99,7 @@ public class UserInfoController {
 	@ApiOperation(value = "根据用户id获取获取信息")
 	@ApiImplicitParam(name = "session", value = "session", required = true, dataType = "String", paramType = "query")
 	@RequestMapping(value = "/load/one", method = {RequestMethod.POST, RequestMethod.GET})
-    @ValidateSession
+   // @ValidateSession
 	public Result<?> loadOne(HttpSession httpSession) {
 		Result<Object> result = new Result<Object>();
         String userId = (String) httpSession.getAttribute("userId");

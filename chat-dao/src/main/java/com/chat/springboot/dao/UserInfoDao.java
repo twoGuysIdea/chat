@@ -1,5 +1,8 @@
 package com.chat.springboot.dao;
 
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import com.chat.springboot.domain.UserInfo;
 
@@ -32,6 +35,7 @@ public interface UserInfoDao extends MongoRepository<UserInfo, String> {
 	 * @param sign
 	 * @return
 	 */
+	@CacheEvict(value="userInfo", key="'userInfo_'+#p0") 
 	public int updateSignById(String userId, String sign);
 
 	/**
@@ -39,5 +43,6 @@ public interface UserInfoDao extends MongoRepository<UserInfo, String> {
 	 * @param userId
 	 * @return
 	 */
-    UserInfo findById(String userId);
+	@Cacheable(value="userInfo", key="'userInfo_'+#p0")
+    public UserInfo findById(String userId);
 }
