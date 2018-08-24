@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.chat.springboot.domain.ProjectException;
 import com.chat.springboot.domain.Result;
 import com.chat.springboot.domain.ResultStatus;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * <pre>
@@ -19,9 +20,9 @@ import com.chat.springboot.domain.ResultStatus;
  * </pre>
  */
 @ControllerAdvice
+@Slf4j
 public class ExceptionHandleAop {
 
-	private final static Logger logger = Logger.getLogger(ExceptionHandleAop.class);
 
 	@ResponseBody
 	@ExceptionHandler(value = Exception.class)
@@ -35,7 +36,7 @@ public class ExceptionHandleAop {
 			}
 			return result.setCode(resultStatus);
 		}
-		logger.error("出现了系统未知的错误-----！！！！", e);
+		log.error("出现了系统未知的错误-----！！！！", e);
 		e.printStackTrace();// 未知错误，打印出来
 		return result.setCode(ResultStatus.UNKNOW_ERROR);
 	}

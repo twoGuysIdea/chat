@@ -22,6 +22,7 @@ public class FreeMarkerController {
 	
 	@RequestMapping("/index")
 	public ModelAndView index() {
+		int i = 1 / 0;
 		Map<String, Object> dataMap = new HashMap<String, Object>();
 		return new ModelAndView("/freemarker/index", dataMap);
 	}

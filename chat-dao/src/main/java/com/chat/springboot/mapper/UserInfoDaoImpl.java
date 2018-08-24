@@ -36,7 +36,6 @@ public class UserInfoDaoImpl {
 		Update update = new Update();
 		update.set("sign", sign);
 		return mongoTemplate.updateFirst(query, update, UserInfo.class).getN();
-		
 	}
 
 	public UserInfo findById(String userId){

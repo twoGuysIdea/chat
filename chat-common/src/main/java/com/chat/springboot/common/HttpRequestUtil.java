@@ -47,4 +47,13 @@ public class HttpRequestUtil {
 		String response = restTemplate.postForObject(url, request, String.class);
 		return response;
 	}
+	
+	/*public static void main(String[] args) {
+		Map<String, String> map = new HashMap<>();
+		map.put("name", "yangyiwei");
+		map.put("nage", "50");
+		for(Map.Entry<String, String> item : map.entrySet()) {
+			System.out.println(item.getValue());
+		}
+	}*/
 }

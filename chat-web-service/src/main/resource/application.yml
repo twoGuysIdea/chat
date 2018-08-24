@@ -38,10 +38,10 @@ spring:
   #配置redis
   redis:
     database: 0
-    host: 172.16.31.240
+    host: 192.168.31.105
     port: 6379
     timeout: 0
-    password: 123456
+    password: password
     pool:
       #最大连接数
       max-active: 8 
@@ -60,6 +60,7 @@ spring:
 
 #配置日志
 logging:
-  path: /com/yangyiwei
-  level:
-    com.chat.springboot: debug
+  config: classpath:logback-close.xml #如果使用该配置 所有日志将写入redis 
+  #path: /com/yangyiwei
+  #level:
+    #com.chat.springboot: debug
