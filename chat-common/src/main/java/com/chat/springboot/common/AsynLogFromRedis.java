@@ -40,15 +40,15 @@ public class AsynLogFromRedis {
 	 * Q    Q: 2873824885
 	 * </pre>
 	 */
-	@Scheduled(fixedRate = 1000 * 60 * 10)
+	@Scheduled(fixedRate = 1000 * 60 * 3)
 	// @Scheduled(cron = "0 */1 * * * ?")
 	public void saySpringBoot() {
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		logger.info("当前时间:" + df.format(new Date()) + "..开始执行日志同步任务......");
 		long startTime = System.currentTimeMillis();
 		Jedis jedis = jedisPool.getResource();
-		List<String> logLists = jedis.lrange("chat-web-log", 0, 99);// 截取最前面的99条日志
-		jedis.ltrim("chat-web-log", 100, -1);// 只保留99条记录之后的数据
+		List<String> logLists = jedis.lrange("chat-web-log", 0, 499);// 截取最前面的99条日志
+		jedis.ltrim("chat-web-log", 500, -1);// 只保留99条记录之后的数据
 		List<JSONObject> dealList = new ArrayList<JSONObject>();
 		for (String item : logLists) {
 			JSONObject jsonItem = JSONObject.parseObject(item);

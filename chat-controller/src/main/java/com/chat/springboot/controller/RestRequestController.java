@@ -1,5 +1,8 @@
 package com.chat.springboot.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -87,6 +90,23 @@ public class RestRequestController {
 	@RequestMapping(value = "/get", method = { RequestMethod.POST, RequestMethod.GET })
 	public JSONObject getRequest() {
 		JSONObject result = restTemplate.getForObject("http://localhost:8000/rest/hello", JSONObject.class);
+		return result;
+	}
+	
+	/**
+	 * <pre>
+	 * 功       能: post请求
+	 * 涉及版本: V3.0.0 
+	 * 创  建  者: yangyiwei
+	 * 日       期: 2018年4月9日 下午2:39:51
+	 * Q    Q: 2873824885
+	 * </pre>
+	 */
+	@RequestMapping(value = "/post", method = { RequestMethod.POST, RequestMethod.GET })
+	public String postRequest() {
+		Map<String, String> param = new HashMap<>();
+		param.put("", "");
+		String result = httpRequest.sendPostRequest("", param);
 		return result;
 	}
 	
