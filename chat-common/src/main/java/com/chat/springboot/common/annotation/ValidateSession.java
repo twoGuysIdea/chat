@@ -1,4 +1,4 @@
-package com.chat.springboot.common;
+package com.chat.springboot.common.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

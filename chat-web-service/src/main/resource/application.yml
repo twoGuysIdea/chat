@@ -14,9 +14,9 @@ spring:
   #配置阿里巴巴连接池
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/chat?characterEncoding=utf8
-    username: root
-    password: root
+    url: jdbc:mysql://127.0.0.1:3306/spring-boot?characterEncoding=utf8
+    username: yangyiwei
+    password: 123456
     type: com.alibaba.druid.pool.DruidDataSource
     filters: stat
     maxActive: 20
@@ -57,6 +57,14 @@ spring:
       enabled: true
       additional-paths: src/main/java
       exclude: templates/**
+  #配置activeMQ
+  activemq:
+    broker-url: tcp://localhost:61616
+    user: admin
+    password: admin
+    in-memory: true
+    pool:
+      enabled: false
 
 #配置日志
 logging:

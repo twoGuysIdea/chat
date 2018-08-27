@@ -40,12 +40,11 @@ public class MyCORSFilter implements Filter {
 	public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain)
 			throws IOException, ServletException {
 		HttpServletResponse response = (HttpServletResponse) servletResponse;
-		// String origin = (String) servletRequest.getRemoteHost() + ":" +
-		// servletRequest.getRemotePort();
-		response.setHeader("Access-Control-Allow-Origin", "http://localhost:8080");
+		response.setHeader("Access-Control-Allow-Origin", "http://localhost:8000");
 		response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
 		response.setHeader("Access-Control-Max-Age", "3600");
-		response.setHeader("Access-Control-Allow-Headers", "x-requested-with,Authorization");
+		//一定要设置 content-type 否则application/json的请求 无法跨域
+		response.setHeader("Access-Control-Allow-Headers", "x-requested-with,Authorization,content-type");
 		response.setHeader("Access-Control-Allow-Credentials", "true");
 		HttpServletRequest request = (HttpServletRequest) servletRequest;
 		logger.info("执行了cors跨域过滤......" + "url = " + request.getRequestURI() + " 请求来自:" + request.getRemoteAddr());

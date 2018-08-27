@@ -1,7 +1,5 @@
 package com.chat.springboot.controller;
-
 import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -9,12 +7,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.chat.springboot.common.ValidatePage;
+import com.chat.springboot.common.annotation.ValidatePage;
 import com.chat.springboot.domain.Person;
 import com.chat.springboot.domain.Result;
 import com.chat.springboot.domain.ResultStatus;
 import com.chat.springboot.service.PersonService;
-
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
