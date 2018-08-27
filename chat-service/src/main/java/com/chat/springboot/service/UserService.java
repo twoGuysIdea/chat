@@ -38,7 +38,7 @@ public interface UserService {
 	 * @param user 
 	 * @param currentPage 
 	 */
-	public Result<Object> findList(User user, Integer currentPage);
+	public List<User> findList(Integer currentPage);
 
 	/**
 	 * <pre>

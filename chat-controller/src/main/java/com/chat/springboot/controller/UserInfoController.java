@@ -10,7 +10,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import com.chat.springboot.common.StringUtils;
-import com.chat.springboot.common.ValidateSession;
+import com.chat.springboot.common.annotation.ValidateSession;
 import com.chat.springboot.domain.Result;
 import com.chat.springboot.domain.ResultStatus;
 import com.chat.springboot.domain.UserInfo;
@@ -26,7 +26,7 @@ import io.swagger.annotations.ApiOperation;
  * @time 下午4:36:35
  */
 @RestController
-@CrossOrigin
+//@CrossOrigin
 @RequestMapping("/user/info")
 public class UserInfoController {
 	
@@ -99,7 +99,7 @@ public class UserInfoController {
 	@ApiOperation(value = "根据用户id获取获取信息")
 	@ApiImplicitParam(name = "session", value = "session", required = true, dataType = "String", paramType = "query")
 	@RequestMapping(value = "/load/one", method = {RequestMethod.POST, RequestMethod.GET})
-   // @ValidateSession
+	@ValidateSession
 	public Result<?> loadOne(HttpSession httpSession) {
 		Result<Object> result = new Result<Object>();
         String userId = (String) httpSession.getAttribute("userId");

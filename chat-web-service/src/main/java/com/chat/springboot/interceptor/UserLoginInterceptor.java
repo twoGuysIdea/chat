@@ -12,7 +12,7 @@ import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.alibaba.fastjson.JSONObject;
-import com.chat.springboot.common.ValidateSession;
+import com.chat.springboot.common.annotation.ValidateSession;
 import com.chat.springboot.domain.Result;
 import com.chat.springboot.domain.ResultStatus;
 
@@ -59,7 +59,7 @@ public class UserLoginInterceptor implements HandlerInterceptor {
 				try {
 					Result<Object> resultUtil = new Result<Object>();
 					resultUtil.setCode(ResultStatus.USER_IS_NULL).setData("请登录后再试！");
-					response.setContentType("text/html;charset=utf-8");
+					response.setContentType("application/json;charset=utf-8");
 					out = response.getWriter();
 					out.write(JSONObject.toJSONString(resultUtil));
 					out.flush();

@@ -9,7 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import com.chat.springboot.common.StringUtils;
-import com.chat.springboot.common.ValidateSession;
+import com.chat.springboot.common.annotation.ValidateAttribute;
+import com.chat.springboot.common.annotation.ValidateSession;
 import com.chat.springboot.domain.Result;
 import com.chat.springboot.domain.ResultStatus;
 import com.chat.springboot.domain.ResultUtil;
@@ -37,10 +38,8 @@ public class UserFriendController {
 	@ApiImplicitParam(name = "friendId", value = "要添加的好友id", required = true, dataType = "String", paramType = "query")
 	@RequestMapping(value = "/add", method = { RequestMethod.POST, RequestMethod.GET })
 	@ValidateSession
+	@ValidateAttribute(attributes = {"friendId"})
 	public Result<?> addFirend(String friendId, HttpSession session) {
-		if (StringUtils.isBlank(friendId)) {
-			return new Result<>(ResultStatus.LACK_PARAM);
-		}
 		String userId = (String) session.getAttribute("userId");
 		return ResultUtil.setResult(userFriendService.addFriend(userId, friendId));
 	}

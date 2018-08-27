@@ -2,6 +2,8 @@ package com.chat.springboot.domain;
 
 import javax.persistence.*;
 
+import cn.afterturn.easypoi.excel.annotation.Excel;
+
 @Table(name = "t_user")
 public class User {
     @Id
@@ -11,17 +13,20 @@ public class User {
     /**
      * 姓名
      */
+    @Excel(name = "名字", orderNum = "0")
     @Column(name = "user_name")
     private String userName;
 
     /**
      * 密码
      */
+    @Excel(name = "密码", orderNum = "10")
     private String password;
 
     /**
      * 电话
      */
+    @Excel(name = "电话", orderNum = "2")
     private String phone;
 
     /**

@@ -1,8 +1,7 @@
-package com.chat.springboot.common.jdbcUtils.business;
+package com.chat.springboot.common.jdbc;
+import com.chat.springboot.common.annotation.ClassPro;
+import com.chat.springboot.common.annotation.FieldPro;
 
-import com.chat.springboot.common.jdbcUtils.annotation.ClassPro;
-import com.chat.springboot.common.jdbcUtils.annotation.FieldPro;
-import com.chat.springboot.common.jdbcUtils.connect.JDBCConnectionUtils;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;

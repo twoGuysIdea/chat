@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import com.alibaba.fastjson.JSONObject;
-import com.chat.springboot.common.CheckValue;
-import com.chat.springboot.common.ValidateBean;
+import com.chat.springboot.common.annotation.CheckValue;
+import com.chat.springboot.common.annotation.ValidateBean;
 import com.chat.springboot.domain.Result;
 import com.chat.springboot.domain.ResultStatus;
 

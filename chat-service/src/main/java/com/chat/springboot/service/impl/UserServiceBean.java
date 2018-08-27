@@ -42,14 +42,10 @@ public class UserServiceBean implements UserService{
 
 	@Override
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true, isolation = Isolation.DEFAULT)
-	public Result<Object> findList(User user, Integer currentPage) {
-		Result<Object> result = new Result<Object>();
+	public List<User> findList(Integer currentPage) {
 		PageHelper.startPage(currentPage, 2, false);
 		List<User> list = userMapper.selectAll();
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("port", port);
-		map.put("list", list);
-		return result.setCode(ResultStatus.SUCCESS).setData(map);
+		return list;
 	}
 
 	//事务 support 支持当前事务，如果没有，则以非事务执行 required:支持当前事务，如果当前没有事务，就新建一个事务 默认

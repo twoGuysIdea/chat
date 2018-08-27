@@ -2,6 +2,9 @@ package com.chat.springboot.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -9,10 +12,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.chat.springboot.common.excel.ExcelUtil;
 import com.chat.springboot.domain.Result;
 import com.chat.springboot.domain.ResultStatus;
 import com.chat.springboot.domain.User;
 import com.chat.springboot.service.UserService;
+
 
 /**
  * 控制(MyBatis整合)
@@ -34,9 +39,15 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/list/{currentPage}", method = { RequestMethod.GET, RequestMethod.POST })
-	public Result<Object> userList(User user, @PathVariable("currentPage") Integer currentPage) {
-		Result<Object> result = userService.findList(user, currentPage);
-		return result;
+	public Result<List<User>> userList(@PathVariable("currentPage") Integer currentPage) {
+		List<User> list = userService.findList(currentPage);
+		return new Result<List<User>>(ResultStatus.SUCCESS, list);
+	}
+	
+	@RequestMapping(value = "/list/export/{currentPage}", method = { RequestMethod.GET, RequestMethod.POST })
+	public void exportUserList(@PathVariable("currentPage") Integer currentPage, HttpServletRequest request, HttpServletResponse response) {
+		List<User> list = userService.findList(currentPage);
+		ExcelUtil.exportExcel(list,"出错记录","出错记录",User.class,"出错记录.xls",response, request);
 	}
 
 	@RequestMapping(value = "/find/attribute", method = { RequestMethod.GET, RequestMethod.POST })
