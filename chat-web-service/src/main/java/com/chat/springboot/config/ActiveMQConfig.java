@@ -16,7 +16,7 @@ import com.chat.springboot.common.jms.QueueName;
  * @date 2018年6月4日
  * @time 下午1:46:00
  */
-@Configuration
+//@Configuration
 public class ActiveMQConfig {
 
 	@Bean("logQueue")

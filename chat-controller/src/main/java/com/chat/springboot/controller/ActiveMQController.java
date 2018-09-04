@@ -21,8 +21,8 @@ import com.chat.springboot.domain.ResultStatus;
  * Q    Q: 2873824885
  * </pre>
  */
-@Controller
-@RequestMapping("/message")
+//@Controller
+//@RequestMapping("/message")
 public class ActiveMQController {
 	
 	@Autowired

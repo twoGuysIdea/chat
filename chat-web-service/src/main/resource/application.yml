@@ -58,17 +58,17 @@ spring:
       additional-paths: src/main/java
       exclude: templates/**
   #配置activeMQ
-  activemq:
-    broker-url: tcp://localhost:61616
-    user: admin
-    password: admin
-    in-memory: true
-    pool:
-      enabled: false
+  #activemq:
+    #broker-url: tcp://localhost:61616
+   # user: admin
+    #password: admin
+    #in-memory: true
+  #  pool:
+    #  enabled: false
 
 #配置日志
 logging:
-  config: classpath:logback-close.xml #如果使用该配置 所有日志将写入redis 
-  #path: /com/yangyiwei
-  #level:
-    #com.chat.springboot: debug
+  #config: classpath:logback-close.xml #如果使用该配置 所有日志将写入redis 
+  path: /com/yangyiwei
+  level:
+    com.chat.springboot: debug
