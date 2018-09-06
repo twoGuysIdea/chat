@@ -3,19 +3,21 @@ package com.chat.springboot.controller;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import com.chat.springboot.common.StringUtils;
+
 import com.chat.springboot.common.annotation.ValidateAttribute;
 import com.chat.springboot.common.annotation.ValidateSession;
-import com.chat.springboot.domain.Result;
-import com.chat.springboot.domain.ResultStatus;
-import com.chat.springboot.domain.ResultUtil;
+import com.chat.springboot.common.response.ResponseResult;
+import com.chat.springboot.common.response.ResultStatus;
+import com.chat.springboot.common.response.ResultUtil;
 import com.chat.springboot.domain.UserInfo;
 import com.chat.springboot.service.UserFriendService;
+
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 
@@ -39,7 +41,7 @@ public class UserFriendController {
 	@RequestMapping(value = "/add", method = { RequestMethod.POST, RequestMethod.GET })
 	@ValidateSession
 	@ValidateAttribute(attributes = {"friendId"})
-	public Result<?> addFirend(String friendId, HttpSession session) {
+	public ResponseResult<?> addFirend(String friendId, HttpSession session) {
 		String userId = (String) session.getAttribute("userId");
 		return ResultUtil.setResult(userFriendService.addFriend(userId, friendId));
 	}
@@ -48,7 +50,7 @@ public class UserFriendController {
 	@ApiImplicitParam(name = "session", value = "session", required = false, dataType = "String", paramType = "query")
 	@RequestMapping(value = "/list", method = { RequestMethod.POST, RequestMethod.GET })
     @ValidateSession
-	public Result<List<UserInfo>> getFriendListByUid(HttpSession session) {
+	public ResponseResult<List<UserInfo>> getFriendListByUid(HttpSession session) {
 		String userId = (String) session.getAttribute("userId");
 		List<UserInfo> userInfos = userFriendService.getFriendListByUid(userId);
 		return ResultUtil.setResult(ResultStatus.SUCCESS, userInfos);

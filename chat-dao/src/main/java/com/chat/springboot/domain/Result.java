@@ -1,5 +1,7 @@
 package com.chat.springboot.domain;
 
+import com.chat.springboot.common.response.ResultStatus;
+
 /**
  * <pre>
  * 功       能:用于分析返回结果 http

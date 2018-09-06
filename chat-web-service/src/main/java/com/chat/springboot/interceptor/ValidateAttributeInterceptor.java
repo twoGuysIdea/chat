@@ -8,8 +8,9 @@ import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import com.alibaba.fastjson.JSONObject;
 import com.chat.springboot.common.annotation.ValidateAttribute;
+import com.chat.springboot.common.response.ResultStatus;
 import com.chat.springboot.domain.Result;
-import com.chat.springboot.domain.ResultStatus;
+
 
 import lombok.extern.slf4j.Slf4j;
 

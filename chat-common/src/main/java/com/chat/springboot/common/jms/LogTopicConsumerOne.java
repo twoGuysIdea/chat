@@ -4,7 +4,7 @@ import org.apache.log4j.Logger;
 import org.springframework.jms.annotation.JmsListener;
 import org.springframework.stereotype.Component;  
   
-@Component  
+//@Component  
 public class LogTopicConsumerOne {  
   
 	private final static Logger logger = Logger.getLogger(LogTopicConsumerOne.class);

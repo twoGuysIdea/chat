@@ -1,6 +1,6 @@
 package com.chat.springboot.domain;
 
-import com.chat.springboot.domain.ResultStatus;
+import com.chat.springboot.common.response.ResultStatus;
 
 /**
  * <pre>

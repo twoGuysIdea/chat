@@ -6,9 +6,10 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
+import com.chat.springboot.common.response.ResultStatus;
 import com.chat.springboot.dao.UserFriendDao;
 import com.chat.springboot.dao.UserInfoDao;
-import com.chat.springboot.domain.ResultStatus;
+
 import com.chat.springboot.domain.UserFriend;
 import com.chat.springboot.domain.UserInfo;
 import com.chat.springboot.service.UserFriendService;

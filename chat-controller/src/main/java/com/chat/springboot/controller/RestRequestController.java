@@ -13,7 +13,7 @@ import org.springframework.web.client.RestTemplate;
 import com.alibaba.fastjson.JSONObject;
 import com.chat.springboot.common.request.HttpRequestUtil;
 import com.chat.springboot.domain.Result;
-import com.chat.springboot.domain.ResultStatus;
+import com.chat.springboot.common.response.ResultStatus;
 
 
 /**

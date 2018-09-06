@@ -1,6 +1,5 @@
 package com.chat.springboot.service;
-
-import com.chat.springboot.domain.ResultStatus;
+import com.chat.springboot.common.response.ResultStatus;
 import com.chat.springboot.domain.UserInfo;
 
 /**

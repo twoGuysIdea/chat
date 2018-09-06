@@ -7,10 +7,11 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import com.chat.springboot.common.PageBean;
+import com.chat.springboot.common.response.ResultStatus;
 import com.chat.springboot.dao.PersonDao;
 import com.chat.springboot.domain.Person;
 import com.chat.springboot.domain.Result;
-import com.chat.springboot.domain.ResultStatus;
+
 import com.chat.springboot.service.PersonService;
 
 @Service

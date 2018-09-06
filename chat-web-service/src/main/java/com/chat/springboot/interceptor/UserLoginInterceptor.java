@@ -13,8 +13,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.alibaba.fastjson.JSONObject;
 import com.chat.springboot.common.annotation.ValidateSession;
+import com.chat.springboot.common.response.ResultStatus;
 import com.chat.springboot.domain.Result;
-import com.chat.springboot.domain.ResultStatus;
+
 
 /**
  * 用户登陆拦截器

@@ -1,21 +1,17 @@
 package com.chat.springboot.controller;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-
 import com.chat.springboot.common.StringUtils;
 import com.chat.springboot.common.annotation.ValidateSession;
+import com.chat.springboot.common.response.ResultStatus;
 import com.chat.springboot.domain.Result;
-import com.chat.springboot.domain.ResultStatus;
 import com.chat.springboot.domain.UserInfo;
 import com.chat.springboot.service.UserInfoService;
-
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 

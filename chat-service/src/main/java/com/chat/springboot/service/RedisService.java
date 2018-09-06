@@ -42,4 +42,11 @@ public interface RedisService {
 	 */
 	public Result<Object> distributeLock();
 
+	/**
+	 * redis发布
+	 * @param message
+	 * @return
+	 */
+	public boolean publishMessage(String message);
+
 }

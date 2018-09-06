@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import com.alibaba.fastjson.JSONObject;
 import com.chat.springboot.domain.Result;
-import com.chat.springboot.domain.ResultStatus;
+import com.chat.springboot.common.response.ResultStatus;
 import com.chat.springboot.service.RedisService;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
@@ -100,5 +100,11 @@ public class RedisController {
 	@RequestMapping(value = "/distribute/lock", method = { RequestMethod.POST, RequestMethod.GET })
 	public Result<Object> distributeLock() {
 		return redisService.distributeLock();
+	}
+	
+	@ApiOperation("redis发布消息")
+	public Result<String> publishMessage(String message) {
+		boolean result = redisService.publishMessage(message);
+		return new Result<String>(ResultStatus.SUCCESS, message);
 	}
 }

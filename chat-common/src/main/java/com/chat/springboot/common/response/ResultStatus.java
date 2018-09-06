@@ -2,6 +2,7 @@ package com.chat.springboot.common.response;
 import java.util.concurrent.atomic.AtomicInteger;
 
 
+
 /**
  * <pre>
  * 功       能:返回状态枚举类 
@@ -30,35 +31,16 @@ public enum ResultStatus {
 	DELETE_FAIL("删除数据失败",  InnerCode.getIncrmentI()),
 	TRANSACTION_FAIL("多表操作失败", InnerCode.getIncrmentI()),
 
-	/**工厂模块枚举类型**/
-	FACTORY_TYPE_NOT_MATCH("地点类型不符", InnerCode.getIncrmentI()),
-	VIRTUAL_DEVICE_NOT_MATCH("该工厂节点并不存在真实设备", InnerCode.getIncrmentI()),
-
-	/**责任人模块**/
-	PERSON_IS_ILLEGAL("上传的责任人中存在非法用户", InnerCode.getIncrmentI()),
-	QUERY_PERSON_FAIL("卡号未匹配到人员", InnerCode.getIncrmentI()),
-
-	/**防错装置模块**/
-	PROOF_DEVICE_EXIST_MEASURE_RECORD("防错装置下存在防错记录", InnerCode.getIncrmentI()),
+	/**用户模块枚举类型**/
+	USER_IS_REGISTER("用户已经被注册过了",  InnerCode.getIncrmentI()),
+	LOGIN_FAIL("账号或者密码错误",  InnerCode.getIncrmentI()),
+	USER_IS_NULL("请登录后再试",  InnerCode.getIncrmentI()),
+	USER_NOT_EXIST("账号不存在", InnerCode.getIncrmentI()),
 	
-	/**防错报警装置模块**/
-	ALERT_CAN_NOT_GT_THREE("防错报警层数不能大于三层", InnerCode.getIncrmentI()),
-	/*设备*/
-	EQUIPMENT_FIND_ERROR("未查询到设备或查询到多条设备", InnerCode.getIncrmentI()),
-	
+	/**好友模块枚举类型**/
+	CAN_NOT_ADD_SELF("不能添加自身为好友", InnerCode.getIncrmentI()),
+	CAN_NOT_ADD_REPEAT_FRIEND("不可重复添加好友", InnerCode.getIncrmentI())
 
-
-	/*终端数据*/
-	TERMINAL_RECORD("终端数据不能删除", InnerCode.getIncrmentI()),
-
-	/*EXCEL数据导出*/
-	EXCEL_EXPORT_ERROR("导出数据不能为空", InnerCode.getIncrmentI()),
-
-	/*上传文件错误*/
-	FILE_UPLOAD_ERROR("上传文件不能为空", InnerCode.getIncrmentI()),
-	FILE_UPLOAD_TYPE_ERROR("必须是JPEG/PNG格式", InnerCode.getIncrmentI()),
-	
-	
 	;
 	/**
 	 * 消息

@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
  * @date 2018年6月12日
  * @time 上午10:08:08
  */
-@Component
+//@Component
 public class LogProducer/* implements CommandLineRunner */{
 
 	private final static Logger logger = Logger.getLogger(LogProducer.class);

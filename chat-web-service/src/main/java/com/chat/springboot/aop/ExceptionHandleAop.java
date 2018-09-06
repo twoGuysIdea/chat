@@ -1,13 +1,10 @@
 package com.chat.springboot.aop;
-
-import org.apache.log4j.Logger;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
-
+import com.chat.springboot.common.response.ResponseResult;
+import com.chat.springboot.common.response.ResultStatus;
 import com.chat.springboot.domain.ProjectException;
-import com.chat.springboot.domain.Result;
-import com.chat.springboot.domain.ResultStatus;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -23,21 +20,20 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class ExceptionHandleAop {
 
-
 	@ResponseBody
 	@ExceptionHandler(value = Exception.class)
-	public Result<Object> handle(Exception e) {
-		Result<Object> result = new Result<Object>();
+	public ResponseResult<?> handle(Exception e) {
 		if (e instanceof ProjectException) {
+			log.error("出现了自定义错误-----！！！！", e);
 			ProjectException projectException = (ProjectException) e;
 			ResultStatus resultStatus = projectException.getResultStatus();
 			if (projectException.getDetailMsg() != null) {
-				result.setData(projectException.getDetailMsg());
+				return new ResponseResult<String>(resultStatus, projectException.getDetailMsg());
 			}
-			return result.setCode(resultStatus);
+			return new ResponseResult<>(resultStatus);
 		}
 		log.error("出现了系统未知的错误-----！！！！", e);
 		e.printStackTrace();// 未知错误，打印出来
-		return result.setCode(ResultStatus.UNKNOW_ERROR);
+		return new ResponseResult<>(ResultStatus.UNKNOW_ERROR);
 	}
 }

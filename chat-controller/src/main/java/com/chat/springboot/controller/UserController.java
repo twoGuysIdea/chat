@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.chat.springboot.common.excel.ExcelUtil;
 import com.chat.springboot.domain.Result;
-import com.chat.springboot.domain.ResultStatus;
+import com.chat.springboot.common.response.ResultStatus;
 import com.chat.springboot.domain.User;
 import com.chat.springboot.service.UserService;
 

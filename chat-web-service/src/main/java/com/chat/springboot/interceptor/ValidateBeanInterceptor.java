@@ -1,5 +1,4 @@
 package com.chat.springboot.interceptor;
-
 import java.io.PrintWriter;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
@@ -11,12 +10,8 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import com.alibaba.fastjson.JSONObject;
 import com.chat.springboot.common.annotation.CheckValue;
 import com.chat.springboot.common.annotation.ValidateBean;
+import com.chat.springboot.common.response.ResultStatus;
 import com.chat.springboot.domain.Result;
-import com.chat.springboot.domain.ResultStatus;
-
-
-
-
 
 /**
  * <pre>

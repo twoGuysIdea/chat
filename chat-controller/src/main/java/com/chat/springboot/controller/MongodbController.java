@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.chat.springboot.common.annotation.ValidatePage;
 import com.chat.springboot.domain.Person;
 import com.chat.springboot.domain.Result;
-import com.chat.springboot.domain.ResultStatus;
+import com.chat.springboot.common.response.ResultStatus;
 import com.chat.springboot.service.PersonService;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -113,4 +113,6 @@ public class MongodbController {
 	public Result<Object> findByPage(Integer pageSize, Integer pageNo) {
 		return personService.findByPage(pageSize, pageNo);
 	}
+	
+
 }

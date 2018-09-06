@@ -8,8 +8,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.chat.springboot.common.jms.LogProducer;
 import com.chat.springboot.common.jms.LogTopicProducer;
+import com.chat.springboot.common.response.ResultStatus;
 import com.chat.springboot.domain.Result;
-import com.chat.springboot.domain.ResultStatus;
+
 
 
 /**

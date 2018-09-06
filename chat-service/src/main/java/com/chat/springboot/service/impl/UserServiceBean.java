@@ -5,21 +5,18 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
-
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-
 import com.github.pagehelper.PageHelper;
+import com.chat.springboot.common.response.ResultStatus;
 import com.chat.springboot.dao.UserMapper;
 import com.chat.springboot.domain.Result;
-import com.chat.springboot.domain.ResultStatus;
 import com.chat.springboot.domain.User;
 import com.chat.springboot.service.UserService;
-
 import tk.mybatis.mapper.entity.Example;
 import tk.mybatis.mapper.entity.Example.Criteria;
 

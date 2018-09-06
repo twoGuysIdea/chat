@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
  * @date 2018年6月12日
  * @time 上午10:07:21
  */
-@Component  
+//@Component  
 public class LogConsumer {  
   
 	private final static Logger logger = Logger.getLogger(LogConsumer.class);

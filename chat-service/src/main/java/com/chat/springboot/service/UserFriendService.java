@@ -1,10 +1,9 @@
 package com.chat.springboot.service;
 
 import java.util.List;
-
 import org.springframework.cache.annotation.Cacheable;
 
-import com.chat.springboot.domain.ResultStatus;
+import com.chat.springboot.common.response.ResultStatus;
 import com.chat.springboot.domain.UserInfo;
 
 /**

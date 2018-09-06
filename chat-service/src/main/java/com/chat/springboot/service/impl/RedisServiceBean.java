@@ -8,8 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.alibaba.fastjson.JSONObject;
+import com.chat.springboot.common.response.ResultStatus;
 import com.chat.springboot.domain.Result;
-import com.chat.springboot.domain.ResultStatus;
+
 import com.chat.springboot.service.RedisService;
 
 import redis.clients.jedis.Jedis;
@@ -117,6 +118,14 @@ public class RedisServiceBean implements RedisService {
 		jedis.del("lock");
 		jedis.disconnect();
 		return result.setCode(ResultStatus.SUCCESS).setData("执行完毕");
+	}
+
+	@Override
+	public boolean publishMessage(String message) {
+		Jedis jedis = jedisPool.getResource();
+		jedis.publish("message", message);
+		jedis.disconnect();
+		return true;
 	}
 
 }

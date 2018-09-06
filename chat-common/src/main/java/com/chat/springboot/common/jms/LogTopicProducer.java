@@ -7,7 +7,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.jms.core.JmsMessagingTemplate;
 import org.springframework.stereotype.Component;
 
-@Component
+//@Component
 public class LogTopicProducer/* implements CommandLineRunner*/ {
 	private final static Logger logger = Logger.getLogger(LogTopicProducer.class);
 
