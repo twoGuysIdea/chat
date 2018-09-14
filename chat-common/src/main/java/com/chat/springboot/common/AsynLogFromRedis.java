@@ -22,7 +22,7 @@ import redis.clients.jedis.JedisPool;
  * Q    Q: 2873824885
  * </pre>
  */
-@Component
+//@Component
 public class AsynLogFromRedis {
 
 	private final static Logger logger = Logger.getLogger(AsynLogFromRedis.class);

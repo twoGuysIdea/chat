@@ -26,7 +26,7 @@
 		<!-- 配置对chat-service的依赖 -->
 		<dependency>
 			<groupId>com.chat.springboot</groupId>
-			<artifactId>chat-service</artifactId>
+			<artifactId>chat-common</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
