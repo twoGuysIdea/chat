@@ -1,4 +1,4 @@
-package com.chat.springboot.controller.websocket;
+package com.chat.springboot.controller;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

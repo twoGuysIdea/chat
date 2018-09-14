@@ -1,4 +1,4 @@
-package com.chat.springboot.controller.websocket;
+package com.chat.springboot.controller;
 
 import java.io.IOException;
 import java.util.HashMap;
